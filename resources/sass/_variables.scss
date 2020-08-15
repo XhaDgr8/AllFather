@@ -1,0 +1,146 @@
+// Typography
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font-family-sans-serif: 'Roboto', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$light: #F0F2F5;
+$primary: #958CF4;
+$black:    #000;
+
+$input-btn-padding-y:         .275rem;
+$input-btn-padding-x:         .75rem;
+
+// Shadows
+$shadow-primary: 0 0 10px 1px rgba($primary,.7);
+//0 2.8px 2.2px rgba($primary, 0.034),
+//0 6.7px 5.3px rgba($primary, 0.048),
+//0 12.5px 10px rgba($primary, 0.06),
+//0 22.3px 17.9px rgba($primary, 0.072),
+//0 41.8px 33.4px rgba($primary, 0.086),
+//0 100px 80px rgba($primary, 0.12);
+
+$shadow-primary-sm:               0 .125rem .25rem rgba($primary, .50);
+$shadow-primary-lg:               0px 24px 75px -10px rgba($primary,0.5),
+                                  0 10px 10px -5px rgba($primary, 0.55);
+$shadow-primary-inset:            inset 0 1px 2px rgba($primary, .075);
+
+$box-shadow:                  0 .5rem 1rem rgba($black, .15);
+$box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
+$box-shadow-lg:               0 1rem 3rem rgba($black, .175);
+$box-shadow-inset:            inset 0 1px 2px rgba($black, .075);
+
+.pointer {
+    cursor: pointer!important;
+}
+
+.btn-primary {
+    background:  linear-gradient(118deg,#7367F0,rgba(115,103,240,.7))!important;
+    color: white!important;
+}
+
+.btn-outline-primary:hover {
+    color: white!important;
+}
+
+.anime {transition: all .3s!important;}
+
+.hovered {
+    transition: all .3s!important;
+}
+
+.layout {
+    overflow: hidden;
+    #sidebar{
+        width: 15rem;
+        min-height: 100vh;
+        transition: all .3s!important;
+    }
+    #content{
+        width: calc(100% - 15rem);
+        min-height: 100vh;
+    }
+}
+
+// Shadow Generation Utility
+$utilities: (
+    "shadow": (
+        property: box-shadow,
+        class: shadow,
+        values: (
+            md: $box-shadow,
+            sm: $box-shadow-sm,
+            lg: $box-shadow-lg,
+            inset: $box-shadow-inset,
+            sm-primary: $shadow-primary-sm,
+            md-primary: $shadow-primary,
+            lg-primary: $shadow-primary-lg,
+            inset-primary: $shadow-primary-inset
+        )
+    ),
+);
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+label:focus,
+{
+    -webkit-appearance:none;
+    box-shadow: $shadow-primary-sm!important;
+}
+
+fieldset > * {
+    transition: all .3s ease;
+}
+
+input::placeholder {
+    color: transparent!important;
+}
+
+fieldset {
+    label {
+        position: absolute;
+        top: 23%;left: 0;
+        margin-left: 4%;
+        width: auto;
+    }
+    input:focus {
+        border-color: $primary;
+    }
+
+    input:focus + label,
+    input:not(:placeholder-shown) + label
+    {
+        top: -50%;
+        margin-left: 0%;
+        transform: scale(.8);
+    }
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.separator::before, .separator::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+}
+.separator::before {
+    background: linear-gradient(to left, grey, transparent);
+}
+.separator::after {
+    background: linear-gradient(to right, grey, transparent);
+}
+
+.separator::before {
+    margin-right: .25em;
+}
+.separator::after {
+    margin-left: .25em;
+}
