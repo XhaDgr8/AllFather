@@ -120,6 +120,12 @@
       <path value="$PROJECT_DIR$/vendor/brick/math" />
       <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
       <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/laravel-shift/blueprint" />
+      <path value="$PROJECT_DIR$/vendor/laravel-shift/faker-registry" />
     </include_path>
   </component>
   <component name="ProjectId" id="1fvJkzgOfEqwrdWUJ2AAfRYyt1X" />
@@ -165,7 +171,7 @@
       <workItem from="1597328962714" duration="2787000" />
       <workItem from="1597349884383" duration="17504000" />
       <workItem from="1597419547093" duration="1932000" />
-      <workItem from="1597438412177" duration="15366000" />
+      <workItem from="1597438412177" duration="15720000" />
     </task>
     <servers />
   </component>
@@ -195,11 +201,11 @@
       <screen x="0" y="0" width="1440" height="870" />
     </state>
     <state x="376" y="198" key="run.anything.popup/0.0.1440.870@0.0.1440.870" timestamp="1597360634510" />
-    <state x="467" y="188" width="672" height="562" key="search.everywhere.popup" timestamp="1597448860620">
+    <state x="467" y="188" width="672" height="562" key="search.everywhere.popup" timestamp="1597454448150">
       <screen x="0" y="0" width="1440" height="870" />
     </state>
     <state x="415" y="215" width="672" height="643" key="search.everywhere.popup/0.0.1280.994@0.0.1280.994" timestamp="1597330193868" />
-    <state x="467" y="188" width="672" height="562" key="search.everywhere.popup/0.0.1440.870@0.0.1440.870" timestamp="1597448860620" />
+    <state x="467" y="188" width="672" height="562" key="search.everywhere.popup/0.0.1440.870@0.0.1440.870" timestamp="1597454448150" />
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1597100938693" />
     <state x="550" y="226" key="svn.repositoryBrowser" timestamp="1597449042957">
       <screen x="0" y="0" width="1440" height="870" />
