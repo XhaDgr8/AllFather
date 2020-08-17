@@ -1,3 +1,4 @@
-<img src="{{ Auth::user()->avatar != '' ? Auth::user()->avatar : asset('storage/sa/img_avatar.png') }}" alt="User Avatar"
-     class="mx-1 m-0 p-0 {{$shadow}}"
-     style="vertical-align: middle;width: {{$w}};height: {{$h}};border-radius: 50%;">
+<img src="{{ \App\Helper\Helper::avatar() }}" alt="User Avatar"
+     class="m-0 p-0"
+     {{ $attributes->merge(['class' => "$class"]) }}
+     style="vertical-align: middle;width: {{$w}};height: {{$h}};border-radius: {{$radius}}">

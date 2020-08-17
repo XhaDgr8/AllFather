@@ -15,6 +15,9 @@
                         @if($errors->any())
                             <p class="alert alert-danger">{{$errors->first()}}</p>
                         @endif
+                        @if(isset($msg))
+                            <p class="alert alert-info">{{$msg}}</p>
+                        @endif
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group my-4">

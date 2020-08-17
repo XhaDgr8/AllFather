@@ -23,3 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+
+Route::get('/profile/pView', 'ProfileController@pView')->name('profile.pView');
+Route::resource('profile', 'ProfileController');
+
+Route::post('/imageUpload/{profile}', 'ProfileController@imageUpload')->middleware('auth');

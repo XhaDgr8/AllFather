@@ -100,7 +100,7 @@ class LoginController extends Controller
             }
         }
 
-        return User::create([
+        $user = User::create([
             'name' => $theUser->name,
             'email' => $theUser->email,
             'provider_name' => $provider,
@@ -108,5 +108,14 @@ class LoginController extends Controller
             'password' => hash::make($theUser->id),
             'avatar' => $theUser->avatar
         ]);
+
+        $user->profile()->update([
+            'user_name' => $theUser->name,
+            'avatar' => $theUser->avatar
+        ]);
+
+        return $user;
+
+
     }
 }

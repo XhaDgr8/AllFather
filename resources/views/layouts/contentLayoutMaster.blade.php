@@ -1,3 +1,4 @@
+@yield('page-vars')
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -7,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{$title}} - {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -20,7 +21,6 @@
 
 </head>
 <body id="test" class="bg-light">
-@yield('page-vars')
 <div id="app">
     <div class="layout">
         <div id="sidebar" class="anime p-0 float-left bg-white overflow-hidden">
@@ -28,10 +28,28 @@
         </div>
         <div id="content" class="float-left anime">
             <x-navbar></x-navbar>
-            <main class="py-4">
+            <main class="p-4" style="min-height: 85vh">
+                @if(isset($bread))
+                    <div class="row g-0">
+                        <div class="col-auto">
+                            <h3 class="font-italic">{{$title}}<div class="d-inline border border-dark ml-2"></div></h3>
+
+                        </div>
+                        <div class="col">
+                            <nav class="bg-transparent float-left" aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                    @foreach($bread as $key => $crum)
+                                        <li class="breadcrumb-item {{$key}}" aria-current="page">{{$crum}}</li>
+                                    @endforeach
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                @endif
                 @yield('content')
-                <x-footer></x-footer>
             </main>
+            <x-footer></x-footer>
         </div>
     </div>
 </div>

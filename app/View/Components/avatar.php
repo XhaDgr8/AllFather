@@ -8,20 +8,23 @@ class avatar extends Component
 {
     public $w;
     public $h;
-    public $shadow;
+    public $class;
+    public $radius;
 
     /**
      * Create a new component instance.
      *
      * @param $w
      * @param $h
-     * @param $shadow
+     * @param $class
+     * @param $radius
      */
-    public function __construct($w, $h, $shadow)
+    public function __construct($w, $h, $radius,$class)
     {
         $this->w = $w;
         $this->h = $h;
-        $this->shadow = $shadow;
+        $this->class = $class;
+        $this->radius = $radius;
     }
 
     /**

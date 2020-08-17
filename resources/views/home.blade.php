@@ -1,7 +1,11 @@
 @extends('layouts.contentLayoutMaster')
 
 @section('page-vars')
-    @php $active = "li"; @endphp
+    @php
+        $active = "li";
+        $title = "Welcome Home";
+        $bread = [];
+    @endphp
 @endsection
 
 @section('content')

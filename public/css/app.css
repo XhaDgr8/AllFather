@@ -4,6 +4,10 @@
   cursor: pointer !important;
 }
 
+.nav-item .active {
+  color: white !important;
+}
+
 .btn-primary {
   background: linear-gradient(118deg, #7367F0, rgba(115, 103, 240, 0.7)) !important;
   color: white !important;
@@ -5016,7 +5020,7 @@ fieldset:disabled .btn {
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #e9ecef;
+  background-color: transparent;
   border-radius: 0.25rem;
 }
 
@@ -5032,7 +5036,7 @@ fieldset:disabled .btn {
   display: inline-block;
   padding-right: 0.5rem;
   color: #6c757d;
-  content: "/";
+  content: ">>";
 }
 
 .breadcrumb-item.active {

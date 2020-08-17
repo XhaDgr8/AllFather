@@ -26,16 +26,26 @@
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                            <x-avatar shadow="shadow-sm-primary" w="2rem" h="2rem"/>
-                            <span class="caret"></span>
+                        <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" v-pre>
+                            <div class="p-1 border border-primary rounded-lg">
+                                <x-avatar class="shadow-sm-primary float-left" radius="100%" w="2rem" h="2rem"/>
+                                {{ Auth::user()->profile->user_name }}
+                                <span class="dropdown-toggle mx-1"></span>
+                            </div>
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right shadow-md rounded-lg border-0" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item hovered" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item hovered m-0 text-muted" href="{{ route('profile.pView') }}">
+                                <x-icon i="userCog" class="mr-2" h="1rem" w="1rem"/>
+                                Profile
+                            </a>
+
+                            <hr class="m-0">
+
+                            {{--Logout Button --}}
+                            <a class="dropdown-item m-0 hovered text-muted" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <x-icon i="powerOff" class="mr-2" h="1rem" w="1rem"/>
                                 {{ __('Logout') }}
                             </a>
 
@@ -43,6 +53,7 @@
                                 @csrf
                             </form>
                         </div>
+
                     </li>
                 @endguest
             </ul>

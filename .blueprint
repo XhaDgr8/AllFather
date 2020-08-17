@@ -1,0 +1,11 @@
+created:
+    - database/migrations/2020_08_15_030037_create_profiles_table.php
+    - app/Profile.php
+    - database/factories/ProfileFactory.php
+    - app/Http/Controllers/ProfileController.php
+    - tests/Feature/Http/Controllers/ProfileControllerTest.php
+updated:
+    - routes/web.php
+models:
+    User: { name: string, provider_name: 'string nullable', provider_id: 'text nullable', email: string, email_verified_at: 'datetime nullable', password: string, avatar: 'string nullable', remember_token: 'string:100 nullable' }
+    Profile: { user_id: 'id foreign', user_name: 'string:400 nullable', first_name: 'string:400 nullable', last_name: 'string:400 nullable', status: 'string:400 nullable', website: 'longtext nullable', mobile: 'integer nullable', avatar: 'longtext nullable', relationships: { belongsTo: User } }

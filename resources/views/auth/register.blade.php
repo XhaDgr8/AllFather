@@ -19,23 +19,6 @@
                                 @csrf
                                 <div class="form-group my-4">
                                     <fieldset class="w-100 position-relative">
-                                        <input id="name" type="name"
-                                               class="form-control border @error('name') is-invalid @enderror"
-                                               name="name" value="{{ old('name') }}"
-                                               placeholder="auto"
-                                               required autocomplete="name" autofocus>
-                                        <label for="name">{{ __('Full Name') }}</label>
-                                    </fieldset>
-
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group my-4">
-                                    <fieldset class="w-100 position-relative">
                                         <input id="email" type="email"
                                                class="form-control border @error('email') is-invalid @enderror"
                                                name="email" value="{{ old('email') }}"
