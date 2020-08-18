@@ -23,10 +23,10 @@ class ProfileControllerTest extends TestCase
     {
         $profiles = factory(Profile::class, 3)->create();
 
-        $response = $this->get(route('profile.index'));
+        $response = $this->get(route('customers.index'));
 
         $response->assertOk();
-        $response->assertViewIs('profile.index');
+        $response->assertViewIs('customers.index');
         $response->assertViewHas('profiles');
     }
 
@@ -36,10 +36,10 @@ class ProfileControllerTest extends TestCase
      */
     public function create_displays_view()
     {
-        $response = $this->get(route('profile.create'));
+        $response = $this->get(route('customers.create'));
 
         $response->assertOk();
-        $response->assertViewIs('profile.create');
+        $response->assertViewIs('customers.create');
     }
 
 
@@ -62,7 +62,7 @@ class ProfileControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->post(route('profile.store'), [
+        $response = $this->post(route('customers.store'), [
             'user_id' => $user->id,
         ]);
 
@@ -72,8 +72,8 @@ class ProfileControllerTest extends TestCase
         $this->assertCount(1, $profiles);
         $profile = $profiles->first();
 
-        $response->assertRedirect(route('profile.index'));
-        $response->assertSessionHas('profile.id', $profile->id);
+        $response->assertRedirect(route('customers.index'));
+        $response->assertSessionHas('customers.id', $profile->id);
     }
 
 
@@ -84,11 +84,11 @@ class ProfileControllerTest extends TestCase
     {
         $profile = factory(Profile::class)->create();
 
-        $response = $this->get(route('profile.show', $profile));
+        $response = $this->get(route('customers.show', $profile));
 
         $response->assertOk();
-        $response->assertViewIs('profile.show');
-        $response->assertViewHas('profile');
+        $response->assertViewIs('customers.show');
+        $response->assertViewHas('customers');
     }
 
 
@@ -99,11 +99,11 @@ class ProfileControllerTest extends TestCase
     {
         $profile = factory(Profile::class)->create();
 
-        $response = $this->get(route('profile.edit', $profile));
+        $response = $this->get(route('customers.edit', $profile));
 
         $response->assertOk();
-        $response->assertViewIs('profile.edit');
-        $response->assertViewHas('profile');
+        $response->assertViewIs('customers.edit');
+        $response->assertViewHas('customers');
     }
 
 
@@ -127,14 +127,14 @@ class ProfileControllerTest extends TestCase
         $profile = factory(Profile::class)->create();
         $user = factory(User::class)->create();
 
-        $response = $this->put(route('profile.update', $profile), [
+        $response = $this->put(route('customers.update', $profile), [
             'user_id' => $user->id,
         ]);
 
         $profile->refresh();
 
-        $response->assertRedirect(route('profile.index'));
-        $response->assertSessionHas('profile.id', $profile->id);
+        $response->assertRedirect(route('customers.index'));
+        $response->assertSessionHas('customers.id', $profile->id);
 
         $this->assertEquals($user->id, $profile->user_id);
     }
@@ -147,9 +147,9 @@ class ProfileControllerTest extends TestCase
     {
         $profile = factory(Profile::class)->create();
 
-        $response = $this->delete(route('profile.destroy', $profile));
+        $response = $this->delete(route('customers.destroy', $profile));
 
-        $response->assertRedirect(route('profile.index'));
+        $response->assertRedirect(route('customers.index'));
 
         $this->assertDeleted($profile);
     }

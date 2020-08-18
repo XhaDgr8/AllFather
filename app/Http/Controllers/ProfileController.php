@@ -16,19 +16,21 @@ class ProfileController extends Controller
      */
     public function pView () {
         $profile = [
-            'first_name' => Helper::authProfile('first_name', 'First Name'),
-            'last_name' => Helper::authProfile('last_name', 'Last Name'),
+            'first_name' => Helper::authProfile('vat_no', 'Vat No'),
+            'tel' => Helper::authProfile('tel', 'Tel'),
+            'company_number' => Helper::authProfile('company_number', 'Company Number'),
             'user_name' => Helper::authProfile('user_name', 'User Name'),
+            'address' => Helper::authProfile('address', 'Address'),
             'website' => Helper::authProfile('website', 'Website'),
         ];
-        return view('profile.index', compact('profile'));
+        return view('pages.profile.index', compact('profile'));
     }
 
     public function index(Request $request)
     {
         $profiles = Profile::all();
 
-        return view('profile.index', compact('profiles'));
+        return view('customers.index', compact('profiles'));
     }
 
     /**
@@ -37,7 +39,7 @@ class ProfileController extends Controller
      */
     public function create(Request $request)
     {
-        return view('profile.create');
+        return view('customers.create');
     }
 
     /**
@@ -48,9 +50,9 @@ class ProfileController extends Controller
     {
         $profile = Profile::create($request->validated());
 
-        $request->session()->flash('profile.id', $profile->id);
+        $request->session()->flash('customers.id', $profile->id);
 
-        return redirect()->route('profile.index');
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -60,7 +62,7 @@ class ProfileController extends Controller
      */
     public function show(Request $request, Profile $profile)
     {
-        return view('profile.show', compact('profile'));
+        return view('customers.show', compact('profile'));
     }
 
     /**
@@ -70,7 +72,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request, Profile $profile)
     {
-        return view('profile.edit', compact('profile'));
+        return view('customers.edit', compact('profile'));
     }
 
     /**
@@ -82,9 +84,9 @@ class ProfileController extends Controller
     {
         $profile->update($request->validated());
 
-        $request->session()->flash('profile.id', $profile->id);
+        $request->session()->flash('customers.id', $profile->id);
 
-        return redirect()->route('profile.index');
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -96,7 +98,7 @@ class ProfileController extends Controller
     {
         $profile->delete();
 
-        return redirect()->route('profile.index');
+        return redirect()->route('customers.index');
     }
 
 

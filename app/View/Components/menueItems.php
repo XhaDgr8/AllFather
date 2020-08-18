@@ -4,21 +4,22 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class sidebar extends Component
+class menueItems extends Component
 {
-    public $active;
-    public $subActive;
+    public $subs;
+    public $menu;
 
     /**
      * Create a new component instance.
      *
-     * @param $active
-     * @param $subActive
+     * @param $subs
+     * @param $menu
      */
-    public function __construct($active, $subActive)
+    public function __construct($subs, $menu)
     {
-        $this->active = $active;
-        $this->subActive = $subActive;
+        //
+        $this->subs = $subs;
+        $this->menu = $menu;
     }
 
     /**
@@ -28,7 +29,6 @@ class sidebar extends Component
      */
     public function render()
     {
-        return view('components.sidebar');
+        return view('components.menue-items');
     }
-
 }

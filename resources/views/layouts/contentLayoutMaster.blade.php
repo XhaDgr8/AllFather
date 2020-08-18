@@ -23,8 +23,8 @@
 <body id="test" class="bg-light">
 <div id="app">
     <div class="layout row g-0">
-        <div id="sidebar" class="anime position-relative p-0 col-auto bg-white overflow-hidden">
-            <x-sidebar :active="$active"></x-sidebar>
+        <div id="sidebar" class="anime shadow-md position-relative p-0 col-auto bg-white overflow-hidden">
+            <x-sidebar :subActive="$subActive" :active="$active"></x-sidebar>
         </div>
         <div id="content" class="col anime">
             <x-navbar></x-navbar>

@@ -13,6 +13,7 @@ class Profile extends Model
      */
     protected $fillable = [
         'user_id',
+        'worker_id',
         'user_name',
         'first_name',
         'last_name',
@@ -37,5 +38,6 @@ class Profile extends Model
     {
         return $this->belongsTo(\App\User::class);
     }
+
 
 }

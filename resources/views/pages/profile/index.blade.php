@@ -1,7 +1,8 @@
 @extends('layouts.contentLayoutMaster')
 @section('page-vars')
     @php
-        $active = "";
+        $active = "empty";
+        $subActive = '';
         $title = 'Account Settings';
         $bread = ['Pages' ,'active' => 'Profile'];
     @endphp
@@ -74,17 +75,20 @@
                                                 @endif
                                                 <p class="text-muted mt-2 m-0 text-center">Update you Profile Information</p>
                                             </div>
-                                            <div class="col-6">
-                                                <x-text-input name="first_name" type="text" class="my-2" :label="$profile['first_name']" value="" />
-                                            </div>
-                                            <div class="col-6">
-                                                <x-text-input name="last_name" type="text" class="my-2" :label="$profile['last_name']" value="" />
+                                            <div class="col-12">
+                                                <x-text-input attr="required" name="user_name" type="text" class="my-2" :label="$profile['user_name']" value="" />
                                             </div>
                                             <div class="col-12">
-                                                <x-text-input name="user_name" type="text" class="my-2" :label="$profile['user_name']" value="" />
+                                                <x-text-input attr="required" name="address" type="text" class="my-2" :label="$profile['address']" value="" />
                                             </div>
                                             <div class="col-12">
-                                                <x-text-input name="website" type="text" class="my-2" :label="$profile['website']" value="" />
+                                                <x-text-input attr="required" name="company_number" type="text" class="my-2" :label="$profile['company_number']" value="" />
+                                            </div>
+                                            <div class="col-12">
+                                                <x-text-input attr="required" name="tel" type="text" class="my-2" :label="$profile['tel']" value="" />
+                                            </div>
+                                            <div class="col-12">
+                                                <x-text-input attr="required" name="website" type="text" class="my-2" :label="$profile['website']" value="" />
                                             </div>
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
                                                 <button type="submit" class="btn btn-primary shadow-md-primary mr-sm-1 mb-1 mb-sm-0">Save
@@ -100,7 +104,7 @@
                                         @csrf
                                         <div class="row">
                                             <div class="col-12">
-                                                <x-text-input name="password" class="my-2" type="password" label="Old Password" value="" />
+                                                <x-text-input attr="required" name="password" class="my-2" type="password" label="Old Password" value="" />
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">

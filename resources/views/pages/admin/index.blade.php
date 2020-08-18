@@ -3,6 +3,7 @@
 @section('page-vars')
     @php
         $active = "ability_role";
+        $subActive = '';
         $title = "Roles & Abilities management";
         $bread = ['Admin', 'Pages' ,'active' => 'Ability_Role'];
     @endphp
@@ -52,7 +53,7 @@
                                     <form action="ability/{{$ability->id}}" method="post">
                                         @csrf @method("DELETE")
                                         <button type="submit" class="btn btn-outline-danger btn-sm rounded-lg shadow-sm">
-                                            <x-icon i="trash" class="m-0 mr-1 p-0" h="1.5rem" w="1.5rem"/>
+                                            <x-icon i="trash" class="m-0 p-0" h="1rem" w="1rem"/>
                                         </button>
                                     </form>
                                 </div>
@@ -131,7 +132,7 @@
                                     <form action="role/{{$role->id}}" method="post">
                                         @csrf @method("DELETE")
                                         <button type="submit" class="btn btn-outline-danger btn-sm rounded-lg shadow-sm">
-                                            <x-icon i="trash" class="m-0 mr-1 p-0" h="1.5rem" w="1.5rem"/>
+                                            <x-icon i="trash" class="m-0 p-0" h="1rem" w="1rem"/>
                                         </button>
                                     </form>
                                 </div>
@@ -206,34 +207,32 @@
                 <div class="container-fluid">
                     <div class="row text-center shadow-sm border text-info font-weight-bold py-3">
                         <div class="col-2">#</div>
-                        <div class="col-2">Role Name</div>
-                        <div class="col-5">Have The Abilities</div>
+                        <div class="col-3">Role Name</div>
+                        <div class="col-4">Have The Abilities</div>
                         <div class="col-3">Assign Ability to Role</div>
                     </div>
                     @foreach($roles as $role)
                         <div class="row text-center shadow-sm border pt-2">
                             <div class="col-2">{{ $role->id }}</div>
-                            <div class="col-2">{{ $role->label }}</div>
-                            <div class="col-5">
-                                <h5>
+                            <div class="col-3">{{ $role->label }}</div>
+                            <div class="col-4">
+                                <div class="rel-container shadow-md rounded-sm px-2">
                                     @foreach($role->abilities as $hasAbility)
-                                        <form class="mb-1 d-flex flex-row justify-content-center"
-                                              action="{{route('detach.ability.from.role')}}" method="post">
+                                        <form class="row px-2" action="{{route('detach.ability.from.role')}}" method="post">
                                             @csrf
-
                                             <input type="hidden" value="{{$role->id}}" name="role">
                                             <input type="hidden" value="{{$hasAbility->name}}" name="detach_ability">
-
-                                            <div class="btn-group btn-group-sm" role="group" aria-label="Button btn-group-sm group with nested dropdown">
-                                                <button type="button" class="btn btn-sm btn-outline-primary">{{ $hasAbility->label ?? 'N/A' }}</button>
-                                                <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                    <x-icon i="unlink" class="m-0 p-0" h=".7rem" w=".7rem"/>
-                                                </button>
-                                            </div>
-
+                                            <button type="button" class="btn col rounded-0 btn-sm btn-outline-primary">
+                                                {{$hasAbility->label}}
+                                            </button>
+                                            <button type="submit"
+                                                    class="btn btn-sm col-auto rounded-0 {{$role->id == 'admin' ? 'btn-secondary' : 'btn-outline-danger'}}"
+                                                {{$role->name == 'admin' ? 'disabled' : ''}}>
+                                                <x-icon i="unlink" class="m-0 p-0" h=".7rem" w=".7rem"/>
+                                            </button>
                                         </form>
                                     @endforeach
-                                </h5>
+                                </div>
                             </div>
                             <div class="col-3">
                                 <form class="mb-1 d-flex flex-row justify-content-center" action="/role/assignAbility" method="post">
@@ -267,8 +266,8 @@
                         <div class="row py-3">
                             <div class="col-1">#</div>
                             <div class="col-2">User Name</div>
-                            <div class="col-2">User Email</div>
-                            <div class="col-4">User Role(s)</div>
+                            <div class="col-3">User Email</div>
+                            <div class="col-3">User Role(s)</div>
                             <div class="col-3">Assign User Role</div>
                         </div>
                     </div>
@@ -280,32 +279,26 @@
                                     @php  $avatar = $user->profile->avatar @endphp
                                     <x-avatar class="" :for="$avatar" radius="100%" w="2.5rem" h="2.5rem"/>
                                 </div>
-                                <div class="col-2 py-1">{{ $user->name }}</div>
-                                <div class="col-2 py-1">{{ $user->email }}</div>
-                                <div class="col-4 py-1">
-                                    <p>
+                                <div class="col-2 py-1">{{ $user->profile->user_name }}</div>
+                                <div class="col-3 py-1">{{ $user->email }}</div>
+                                <div class="col-3 py-1">
+                                    <div class="rel-container shadow-md rounded-sm px-2">
                                         @foreach($user->roles as $userRole)
-                                        <form class="mb-1 d-flex flex-row justify-content-center"
-                                              action="{{route('detach.role.from.user')}}" method="post">
-                                            @csrf
-
-                                            <input type="hidden" value="{{$user->id}}" name="user">
-                                            <input type="hidden" value="{{$userRole->name}}" name="detach_role">
-
-                                            <div class="btn-group btn-group-sm" role="group" aria-label="Button btn-group-sm group with nested dropdown">
-                                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                            <form class="row px-2" action="{{route('detach.role.from.user')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" value="{{$user->id}}" name="user">
+                                                <input type="hidden" value="{{$userRole->name}}" name="detach_role">
+                                                <button type="button" class="btn col rounded-0 btn-sm btn-outline-primary">
                                                     {{$userRole->label}}
                                                 </button>
                                                 <button type="submit"
-                                                        class="btn btn-sm {{$user->id == 1 ? 'btn-secondary' : 'btn-outline-danger'}}"
-                                                        {{$user->id == 1 ? 'disabled' : ''}}>
+                                                        class="btn btn-sm col-auto rounded-0 {{($user->id == 1) ? $userRole->name == 'admin' ? 'btn-secondary' : 'btn-outline-danger' : 'btn-outline-danger'}}"
+                                                {{$user->id == 1 ? $userRole->name == 'admin' ? 'disabled' : '' : ''}}>
                                                     <x-icon i="unlink" class="m-0 p-0" h=".7rem" w=".7rem"/>
                                                 </button>
-                                            </div>
-
-                                        </form>
+                                            </form>
                                         @endforeach
-                                    </p>
+                                    </div>
                                 </div>
                                 <div class="col-3 py-1">
                                     <form class="mb-1 d-flex flex-row justify-content-center"

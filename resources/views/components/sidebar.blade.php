@@ -16,122 +16,36 @@
         <div class="accordion" id="accord">
             <div class="container">
                 @if (auth()->user()->roles()->where('name', 'admin')->exists())
-                    @foreach($navLinks as $link)
-                        @if(array_key_exists('subMenu', $link))
-                            <div class="my-2">
-                                <button class="btn text-muted btn-block
-                        hovered {{$active == $link['slug'] ? 'btn-primary shadow-md-primary ' : "" }}"
-                                        type="button" data-toggle="collapse"
-                                        data-target="#{{ $link['slug'] }}" aria-expanded="false"
-                                        aria-controls="{{ $link['slug'] }}">
-                                    <p class="m-0 text-left {{$active == $link['slug'] ? 'text-white' : "" }}">
-                                        <x-icon i="{{$link['icon']}}" class="mr-3" h="1rem" w="1rem"/>
-                                        <span class="sp-lg">{{ $link['name'] }}</span>
-                                    </p>
-                                </button>
+                    @php
+                        $menu = [
+                                    'active' => $active,
+                                    'id' => 'ability_role',
+                                    'name' => 'Roles & Abilities',
+                                    'icon' => 'stayLinked',
+                                    'url' => '/ability_role'
+                                ];
+                        $subs = [];
+                    @endphp
+                    <x-menue-items :subs="$subs" :menu="$menu"/>
 
-
-                                <div id="{{ $link['slug'] }}" class="collapse"
-                                     aria-labelledby="{{ $link['name'] }}" data-parent="#accord">
-                                    <div class="card-body p-0 py-1">
-                                        @foreach($link['subMenu'] as $sublink)
-                                            <button class="btn btn-block btn-link text-decoration-none text-left hovered">
-                                                <x-icon i="circle" class="mr-2" h=".5rem" w=".5rem"/>
-                                                <span class="sp-lg">{{ $sublink['name'] }}</span>
-                                            </button>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        @else
-                            <a aria-expanded="true" href="{{$link['url']}}"
-                               class="btn btn-block btn-link text-dark text-decoration-none text-left
-                       hovered {{ $active == $link['slug'] ? 'btn-primary shadow-md-primary text-white' : "" }}">
-                                <x-icon i="{{$link['icon']}}" class="mr-3" h="1rem" w="1rem"/>
-                                <span class="sp-lg">{{ $link['name'] }}</span>
-                            </a>
-                        @endif
-                    @endforeach
+                    @php
+                        $menu = [
+                            "url" => "#",
+                            "name" => "Customers",
+                            "id" => "customers",
+                            "icon" => "home",
+                            "active" => $active
+                        ];
+                        $subs = [
+                            ["url" => "/customer/create", "name" => "Create Customer", "id" => 'customer_create', 'active' => $subActive],
+                            ["url" => "/customer/all", "name" => "All Customers", "id" => 'customer_all', 'active' => $subActive],
+                            ["url" => "/customer/view", "name" => "Customer", "id" => 'customer_view', 'active' => $subActive],
+                            ["url" => "/customer/edit", "name" => "Edit Customer", "id" => 'customer_edit', 'active' => $subActive]
+                        ]
+                    @endphp
+                    <x-menue-items :subs="$subs" :menu="$menu"/>
                 @else
-                    @foreach($navLinks as $link)
-                        @can('page_worker')
-                            @if(in_array('page_worker', $link['for']))
-                                @if(array_key_exists('subMenu', $link))
-                                    <div class="my-2">
-                                        <button class="btn text-muted btn-block
-                    hovered {{$active == $link['slug'] ? 'btn-primary shadow-md-primary ' : "" }}"
-                                                type="button" data-toggle="collapse"
-                                                data-target="#{{ $link['slug'] }}" aria-expanded="false"
-                                                aria-controls="{{ $link['slug'] }}">
-                                            <p class="m-0 text-left {{$active == $link['slug'] ? 'text-white' : "" }}">
-                                                <x-icon i="{{$link['icon']}}" class="mr-3" h="1rem" w="1rem"/>
-                                                <span class="sp-lg">{{ $link['name'] }}</span>
-                                            </p>
-                                        </button>
 
-
-                                        <div id="{{ $link['slug'] }}" class="collapse"
-                                             aria-labelledby="{{ $link['name'] }}" data-parent="#accord">
-                                            <div class="card-body p-0 py-1">
-                                                @foreach($link['subMenu'] as $sublink)
-                                                    <button class="btn btn-block btn-link text-decoration-none text-left hovered">
-                                                        <x-icon i="circle" class="mr-2" h=".5rem" w=".5rem"/>
-                                                        <span class="sp-lg">{{ $sublink['name'] }}</span>
-                                                    </button>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                @else
-                                    <a aria-expanded="true" href="{{$link['url']}}"
-                                       class="btn btn-block btn-link text-dark text-decoration-none text-left
-                   hovered {{ $active == $link['slug'] ? 'btn-primary shadow-md-primary text-white' : "" }}">
-                                        <x-icon i="{{$link['icon']}}" class="mr-3" h="1rem" w="1rem"/>
-                                        <span class="sp-lg">{{ $link['name'] }}</span>
-                                    </a>
-                                @endif
-                            @endif
-                        @endcan
-
-                        @can('page_customer')
-                            @if(in_array('page_customer', $link['for']))
-                                @if(array_key_exists('subMenu', $link))
-                                    <div class="my-2">
-                                        <button class="btn text-muted btn-block
-                hovered {{$active == $link['slug'] ? 'btn-primary shadow-md-primary ' : "" }}"
-                                                type="button" data-toggle="collapse"
-                                                data-target="#{{ $link['slug'] }}" aria-expanded="false"
-                                                aria-controls="{{ $link['slug'] }}">
-                                            <p class="m-0 text-left {{$active == $link['slug'] ? 'text-white' : "" }}">
-                                                <x-icon i="{{$link['icon']}}" class="mr-3" h="1rem" w="1rem"/>
-                                                <span class="sp-lg">{{ $link['name'] }}</span>
-                                            </p>
-                                        </button>
-
-
-                                        <div id="{{ $link['slug'] }}" class="collapse"
-                                             aria-labelledby="{{ $link['name'] }}" data-parent="#accord">
-                                            <div class="card-body p-0 py-1">
-                                                @foreach($link['subMenu'] as $sublink)
-                                                    <button class="btn btn-block btn-link text-decoration-none text-left hovered">
-                                                        <x-icon i="circle" class="mr-2" h=".5rem" w=".5rem"/>
-                                                        <span class="sp-lg">{{ $sublink['name'] }}</span>
-                                                    </button>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                @else
-                                    <a aria-expanded="true" href="{{$link['url']}}"
-                                       class="btn btn-block btn-link text-dark text-decoration-none text-left
-               hovered {{ $active == $link['slug'] ? 'btn-primary shadow-md-primary text-white' : "" }}">
-                                        <x-icon i="{{$link['icon']}}" class="mr-3" h="1rem" w="1rem"/>
-                                        <span class="sp-lg">{{ $link['name'] }}</span>
-                                    </a>
-                                @endif
-                            @endif
-                        @endcan
-                    @endforeach
                 @endif
             </div>
         </div>

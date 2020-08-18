@@ -2,7 +2,8 @@
 
 @section('page-vars')
     @php
-        $active = "li";
+        $active = "";
+        $subActive = '';
         $title = "Welcome Home";
         $bread = [];
     @endphp

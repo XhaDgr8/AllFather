@@ -36,4 +36,8 @@ class Role extends Model
         }
         $this->abilities()->detach($ability, false);
     }
+
+    public function users() {
+        return $this->belongsToMany(\App\User::class)->withTimestamps();
+    }
 }

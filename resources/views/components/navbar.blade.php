@@ -36,7 +36,7 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow-md rounded-lg border-0" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item hovered m-0 text-muted" href="{{ route('profile.pView') }}">
+                            <a class="dropdown-item hovered m-0 text-muted" href="{{ route('customers.pView') }}">
                                 <x-icon i="userCog" class="mr-2" h="1rem" w="1rem"/>
                                 Profile
                             </a>

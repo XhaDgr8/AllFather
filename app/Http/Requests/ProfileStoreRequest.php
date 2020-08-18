@@ -25,13 +25,14 @@ class ProfileStoreRequest extends FormRequest
     {
         return [
             'user_name' => 'string|max:400',
-            'first_name' => 'string|max:400',
-            'last_name' => 'string|max:400',
             'status' => 'string|max:400',
             'website' => 'string',
-            'mobile' => 'integer',
+            'company_number' => 'string',
+            'tel' => 'string',
+            'vat_no' => 'string',
             'avatar' => 'string',
             'user_id' => 'required|integer|exists:users,id',
+            'worker_id' => 'nullable|integer|exists:users,id',
         ];
     }
 }
