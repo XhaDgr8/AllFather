@@ -1,16 +1,34 @@
-models:
-  Profile:
-    user_id: id foreign
-    user_name: string:400 nullable
-    first_name: string:400 nullable
-    last_name: string:400 nullable
-    status: string:400 nullable
-    website: longtext nullable
-    mobile: integer nullable
-    avatar: longtext nullable
-    relationships:
-      belongsTo: User
-
-controllers:
-  Profile:
-    resource
+#models:
+#  Profile:
+#    user_id: id foreign
+#    user_name: string:400 nullable
+#    first_name: string:400 nullable
+#    last_name: string:400 nullable
+#    status: string:400 nullable
+#    website: longtext nullable
+#    mobile: integer nullable
+#    avatar: longtext nullable
+#    relationships:
+#      belongsTo: User
+#
+#  Role:
+#    id: bigIncrements
+#    name: string
+#    label: string nullable
+#    relationships:
+#      belongsToMany: Ability
+#
+#  Ability:
+#    id: bigIncrements
+#    name: string
+#    label: string nullable
+#    relationships:
+#      belongsToMany: Role
+#
+#controllers:
+#  Profile:
+#    resource
+#  Role:
+#    resource
+#  Ability:
+#    resource

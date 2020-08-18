@@ -75,8 +75,6 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
-        $user->token;
-
         return back();
     }
 

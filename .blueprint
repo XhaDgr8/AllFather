@@ -1,11 +1,24 @@
 created:
-    - database/migrations/2020_08_15_030037_create_profiles_table.php
-    - app/Profile.php
-    - database/factories/ProfileFactory.php
-    - app/Http/Controllers/ProfileController.php
-    - tests/Feature/Http/Controllers/ProfileControllerTest.php
+    - app/Http/Controllers/RoleController.php
+    - app/Http/Controllers/AbilityController.php
+    - app/Http/Requests/RoleStoreRequest.php
+    - app/Http/Requests/RoleUpdateRequest.php
+    - app/Http/Requests/AbilityStoreRequest.php
+    - app/Http/Requests/AbilityUpdateRequest.php
+    - resources/views/role/index.blade.php
+    - resources/views/role/create.blade.php
+    - resources/views/role/show.blade.php
+    - resources/views/role/edit.blade.php
+    - resources/views/ability/index.blade.php
+    - resources/views/ability/create.blade.php
+    - resources/views/ability/show.blade.php
+    - resources/views/ability/edit.blade.php
+    - tests/Feature/Http/Controllers/RoleControllerTest.php
+    - tests/Feature/Http/Controllers/AbilityControllerTest.php
 updated:
     - routes/web.php
 models:
-    User: { name: string, provider_name: 'string nullable', provider_id: 'text nullable', email: string, email_verified_at: 'datetime nullable', password: string, avatar: 'string nullable', remember_token: 'string:100 nullable' }
+    User: { provider_name: 'string nullable', provider_id: 'text nullable', email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
     Profile: { user_id: 'id foreign', user_name: 'string:400 nullable', first_name: 'string:400 nullable', last_name: 'string:400 nullable', status: 'string:400 nullable', website: 'longtext nullable', mobile: 'integer nullable', avatar: 'longtext nullable', relationships: { belongsTo: User } }
+    Role: { id: bigIncrements, name: string, label: 'string nullable', relationships: { belongsToMany: Ability } }
+    Ability: { id: bigIncrements, name: string, label: 'string nullable', relationships: { belongsToMany: Role } }

@@ -45,6 +45,11 @@ class User extends Authenticatable
 
         static::created(function ($user) {
             $user->profile()->create();
+            if ($user->id == 1) {
+                $user->assignRole('admin');
+            } else {
+                $user->assignRole('customer');
+            }
         });
 
     }
@@ -54,5 +59,29 @@ class User extends Authenticatable
         return $this->hasOne(\App\Profile::class);
     }
 
+    public function roles ()
+    {
+        return $this->belongsToMany(\App\Role::class)->withTimestamps();
+    }
+
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = \App\Role::whereName($role)->firstOrFail();
+        }
+        $this->roles()->sync($role, false);
+    }
+
+    public function detachRole($role)
+    {
+        if (is_string($role)) {
+            $role = \App\Role::whereName($role)->firstOrFail();
+        }
+        $this->roles()->detach($role, false);
+    }
+
+    public function abilities() {
+        return $this->roles->map->abilities->flatten()->pluck('name')->unique();
+    }
 
 }

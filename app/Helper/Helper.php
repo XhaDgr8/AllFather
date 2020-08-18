@@ -5,20 +5,19 @@ use Illuminate\Support\Facades\Auth;
 
 class Helper
 {
-    public static function avatar ()
+    public static function avatar ($for)
     {
-        $a = Auth::user()->profile->avatar;
-        if (strpos($a, 'http') !== false) {
-            $avatar = $a;
-        } else if ($a != '') {
-            $avatar = asset('storage/'.$a);
+        if (strpos($for, 'http') !== false) {
+            $avatar = $for;
+        } else if ($for != '') {
+            $avatar = asset('storage/'.$for);
         } else {
             $avatar = asset('storage/sa/img_avatar.png');
         }
         return $avatar;
     }
 
-    public static function authProfile($feild, $else) {
-        return auth()->user()->profile->$feild != '' ? auth()->user()->profile->$feild : $else;
+    public static function authProfile($field, $else) {
+        return auth()->user()->profile->$field != '' ? auth()->user()->profile->$field : $else;
     }
 }

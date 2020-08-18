@@ -42,9 +42,9 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <a href="javascript: void(0);">
-
-                                                <img src="{{ \App\Helper\Helper::avatar() }}" class="rounded mr-75"
-                                                     alt="profile image" height="64" width="64">
+                                                @php  $avatar = auth()->user()->profile->avatar @endphp
+                                                <x-avatar class="rounded mr-75" :for="$avatar" radius="100%"
+                                                          w="2.5rem" h="2.5rem"/>
                                             </a>
                                         </div>
                                         <div class="col px-0 pt-2">
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <div class="separator m-0"></div>
-                                    <form method="post" action="profile/{{auth()->user()->profile->id}}">
+                                    <form method="post" action="/profile/{{auth()->user()->profile->id}}">
                                         @csrf @method('PATCH')
                                         <div class="row">
                                             <div class="col-12">
@@ -75,16 +75,16 @@
                                                 <p class="text-muted mt-2 m-0 text-center">Update you Profile Information</p>
                                             </div>
                                             <div class="col-6">
-                                                <x-text-input name="first_name" type="text" :label="$profile['first_name']" value="" />
+                                                <x-text-input name="first_name" type="text" class="my-2" :label="$profile['first_name']" value="" />
                                             </div>
                                             <div class="col-6">
-                                                <x-text-input name="last_name" type="text" :label="$profile['last_name']" value="" />
+                                                <x-text-input name="last_name" type="text" class="my-2" :label="$profile['last_name']" value="" />
                                             </div>
                                             <div class="col-12">
-                                                <x-text-input name="user_name" type="text" :label="$profile['user_name']" value="" />
+                                                <x-text-input name="user_name" type="text" class="my-2" :label="$profile['user_name']" value="" />
                                             </div>
                                             <div class="col-12">
-                                                <x-text-input name="website" type="text" :label="$profile['website']" value="" />
+                                                <x-text-input name="website" type="text" class="my-2" :label="$profile['website']" value="" />
                                             </div>
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
                                                 <button type="submit" class="btn btn-primary shadow-md-primary mr-sm-1 mb-1 mb-sm-0">Save
@@ -100,7 +100,7 @@
                                         @csrf
                                         <div class="row">
                                             <div class="col-12">
-                                                <x-text-input name="password" type="password" label="Old Password" value="" />
+                                                <x-text-input name="password" class="my-2" type="password" label="Old Password" value="" />
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">

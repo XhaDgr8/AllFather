@@ -21,7 +21,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ __('You are logged in!') }}
+                    <h5>
+                        'You are logged in! as
+                        @foreach(auth()->user()->roles as $userRole)
+                            <p class="badge bg-primary shadow-sm-primary">{{$userRole->label}}</p>
+                        @endforeach
+                    </h5>
                 </div>
             </div>
         </div>

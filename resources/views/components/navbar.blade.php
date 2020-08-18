@@ -29,7 +29,8 @@
                         <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false" v-pre>
                             <div class="p-1 border border-primary rounded-lg">
-                                <x-avatar class="shadow-sm-primary float-left" radius="100%" w="2rem" h="2rem"/>
+                                @php  $avatar = Auth::user()->profile->avatar @endphp
+                                <x-avatar class="shadow-sm-primary" :for="$avatar" radius="100%" w="2rem" h="2rem"/>
                                 {{ Auth::user()->profile->user_name }}
                                 <span class="dropdown-toggle mx-1"></span>
                             </div>

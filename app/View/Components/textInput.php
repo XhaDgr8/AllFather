@@ -10,6 +10,8 @@ class textInput extends Component
     public $value;
     public $type;
     public $label;
+    public $class;
+    public $attr;
 
     /**
      * Create a new component instance.
@@ -18,14 +20,18 @@ class textInput extends Component
      * @param $value
      * @param $type
      * @param $label
+     * @param $attr
+     * @param $class
      */
-    public function __construct($name, $value, $type, $label)
+    public function __construct($name, $value, $type, $label, $attr, $class)
     {
         //
         $this->name = $name;
         $this->value = $value;
         $this->type = $type;
         $this->label = $label;
+        $this->class = $class;
+        $this->attr = $attr;
     }
 
     /**

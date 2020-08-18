@@ -22,17 +22,17 @@
 </head>
 <body id="test" class="bg-light">
 <div id="app">
-    <div class="layout">
-        <div id="sidebar" class="anime p-0 float-left bg-white overflow-hidden">
+    <div class="layout row g-0">
+        <div id="sidebar" class="anime position-relative p-0 col-auto bg-white overflow-hidden">
             <x-sidebar :active="$active"></x-sidebar>
         </div>
-        <div id="content" class="float-left anime">
+        <div id="content" class="col anime">
             <x-navbar></x-navbar>
             <main class="p-4" style="min-height: 85vh">
                 @if(isset($bread))
                     <div class="row g-0">
                         <div class="col-auto">
-                            <h3 class="font-italic">{{$title}}<div class="d-inline border border-dark ml-2"></div></h3>
+                            <h3 class="font-monospace">{{$title}}<div class="d-inline border border-dark ml-2"></div></h3>
 
                         </div>
                         <div class="col">

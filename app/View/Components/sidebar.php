@@ -32,10 +32,12 @@ class sidebar extends Component
     public function navLinks () {
         return [
             [
-                "url" => "/", "name" => "No Sub Menu", "slug" => "li", "icon" => "home",
+                "url" => "/ability_role", "name" => "Roles & Abilities", "slug" => "ability_role", "icon" => "stayLinked",
+                "for" => ['page_admin'],
             ],
             [
                 "url" => "/link1", "name" => "Dashboard", "slug" => "dashboard", "icon" => "github",
+                "for" => ['page_admin', 'page_worker'],
                 "subMenu" => [
                     [
                         "url" => "/subLink", "name" => "Sub Link 1", "slug" => "subLink"
@@ -47,9 +49,10 @@ class sidebar extends Component
             ],
             [
                 "url" => "/link2", "name" => "Link 2", "slug" => "link_2", "icon" => "home",
+                "for" => ['page_admin', 'page_customer'],
                 "subMenu" => [
                     [
-                        "url" => "/subLink2", "name" => "subLink2", "slug" => "subLink2",
+                        "url" => "/subLink2", "name" => "subLink2", "slug" => "subLink2"
                     ]
                 ]
             ]
