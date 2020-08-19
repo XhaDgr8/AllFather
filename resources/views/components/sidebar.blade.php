@@ -38,9 +38,7 @@
                         ];
                         $subs = [
                             ["url" => "/customer/create", "name" => "Create Customer", "id" => 'customer_create', 'active' => $subActive],
-                            ["url" => "/customer/all", "name" => "All Customers", "id" => 'customer_all', 'active' => $subActive],
-                            ["url" => "/customer/view", "name" => "Customer", "id" => 'customer_view', 'active' => $subActive],
-                            ["url" => "/customer/edit", "name" => "Edit Customer", "id" => 'customer_edit', 'active' => $subActive]
+                            ["url" => "/customer/all", "name" => "All Customers", "id" => 'customer_all', 'active' => $subActive]
                         ]
                     @endphp
                     <x-menue-items :subs="$subs" :menu="$menu"/>

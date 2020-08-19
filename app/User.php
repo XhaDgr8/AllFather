@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
@@ -45,6 +46,8 @@ class User extends Authenticatable
 
         static::created(function ($user) {
             $user->profile()->create();
+            $user->profile->status = 'online';
+            $user->profile->save();
             if ($user->id == 1) {
                 $user->assignRole('admin');
             } else {
@@ -83,5 +86,23 @@ class User extends Authenticatable
     public function abilities() {
         return $this->roles->map->abilities->flatten()->pluck('name')->unique();
     }
+
+    public function user_worker ()
+    {
+        return $this->belongsToMany(
+            $this, 'user_workers', 'user_id', 'worker_id'
+        )->withTimestamps();
+    }
+
+    public function assignWorker($user)
+    {
+        $this->user_worker()->sync($user->id, false);
+    }
+
+    public function unAssignWorker($user)
+    {
+        $this->user_worker()->detach($user->id);
+    }
+
 
 }

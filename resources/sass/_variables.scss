@@ -5,8 +5,9 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$light: #F8F8F8;//#F0F2F5
-$primary: #958CF4;
+$light: #F8F8F8;//#F0F2F5//#F8F8F8
+$primary:  #7367F0;//#7367F0//#29AB87
+$secondary:  #29ab87;
 $black:    #000;
 
 $input-btn-padding-y:         .275rem;
@@ -55,9 +56,15 @@ $breadcrumb-divider:                quote(">>");
         justify-content: center;
     }
 }
-
+//#7367F0
+// 115,103,240
 .btn-primary {
-    background:  linear-gradient(118deg,#7367F0,rgba(115,103,240,.7))!important;
+    background:  linear-gradient(118deg, $primary,rgba($primary,.7))!important;
+    color: white!important;
+}
+
+.bg-primary {
+    background:  linear-gradient(118deg, $primary,rgba($primary,.7))!important;
     color: white!important;
 }
 
@@ -194,5 +201,9 @@ fieldset {
 {
     background-color: #000000;
     border: 1px solid #555555;
+}
+
+.hover-delete {
+    cursor: pointer!important;
 }
 

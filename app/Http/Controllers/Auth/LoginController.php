@@ -75,6 +75,9 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
+        Auth::user()->profile->status = 'online';
+        Auth::user()->profile->save();
+
         return back();
     }
 

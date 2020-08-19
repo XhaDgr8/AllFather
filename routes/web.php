@@ -3,6 +3,7 @@
 use App\Ability;
 use App\Role;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,19 +31,30 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::post('/imageUpload/{customers}', 'ProfileController@imageUpload')->middleware('auth');
-
     Route::get('/pView', 'ProfileController@pView')->name('customers.pView');
     Route::resource('customers', 'ProfileController');
+    Route::post('/imageUpload/{customers}', 'ProfileController@imageUpload');
 
+    // Customers All
+    Route::get('/customer/all', 'UserController@customers')
+        ->name('customer.all')->middleware('can:worker', 'can:admin');
+
+    // Create Customer View
+    Route::get('/customer/create', 'UserController@create')
+        ->name('customer.create')->middleware('can:worker', 'can:admin');
+
+    // Create Customer
+    Route::patch('/customer/create', 'UserController@store')
+        ->name('new.customer.create')->middleware('can:worker', 'can:admin');
 
     Route::middleware('can:admin')->group(function(){
+
         Route::resource('role', 'RoleController');
         Route::resource('ability', 'AbilityController');
 
-        // Customers All
-        Route::get('/customer/all', 'UserController@customers')->name('customer.all');
-
+        // Assign Workers to Customers
+        Route::post('/assignWorker', 'AssignmentController@assignWorker')->name('assign.worker.to.customer');
+        Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')->name('unAssign.worker.from.customer');
 
         Route::get('/ability_role', 'AssignmentController@index')->name('ability.role');
 

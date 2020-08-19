@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,9 +16,11 @@ class UserController extends Controller
      */
     public function customers()
     {
-        $roles = Role::where('name', 'customer')->first();
+        $customers = Role::where('name', 'customer')->first()->users;
 
-        return view('pages.customers.index', compact('roles'));
+        $workers = Role::where('name', 'worker')->first()->users;
+
+        return view('pages.customers.index', compact('customers', 'workers'));
     }
 
     /**
@@ -27,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.customers.create');
     }
 
     /**
@@ -38,7 +41,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+
+        User::create([
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+        return redirect('/customer/all');
     }
 
     /**

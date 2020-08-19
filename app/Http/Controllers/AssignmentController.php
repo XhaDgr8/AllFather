@@ -52,4 +52,27 @@ class AssignmentController extends Controller
         $role->restrictTo(request()->detach_ability);
         return back();
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param User $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function assignWorker(Request $request)
+    {
+        $customer = User::findOrFail(request()->customer);
+        $worker = User::findOrFail(request()->assign_worker);
+        $customer->assignWorker($worker);
+        return back();
+    }
+
+    public function unAssignWorker(Request $request)
+    {
+        $customer = User::findOrFail(request()->customer);
+        $worker = User::findOrFail(request()->unAssign_worker);
+        $customer->unAssignWorker($worker);
+        return back();
+    }
 }

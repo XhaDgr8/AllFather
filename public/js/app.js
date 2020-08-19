@@ -14796,6 +14796,12 @@ $(document).ready(function () {
   $('.dropdown').on('hide.bs.dropdown', function () {
     $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
   });
+  $('.hover-delete').hover(function () {
+    $(this).toggleClass("my-1 btn-primary shadow-sm bg-danger my-2 shadow-md");
+  });
+  $('.hover-up').hover(function () {
+    $(this).toggleClass("my-2 shadow-md my-4 shadow-lg");
+  });
 });
 
 /***/ }),

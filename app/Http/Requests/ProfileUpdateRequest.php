@@ -25,12 +25,14 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'user_name' => 'string|max:400',
-            'first_name' => 'string|max:400',
-            'last_name' => 'string|max:400',
-            'status' => 'string|max:400',
-            'website' => 'string',
-            'mobile' => 'integer',
+            'status' => 'nullable|string|max:400',
+            'website' => 'url',
+            'mobile' => 'string',
             'avatar' => 'string',
+            'address' => 'string',
+            'company_number' => 'string',
+            'tel' => 'string',
+            'vat_no' => 'string',
 //            'user_id' => 'required|integer|exists:users,id',
         ];
     }

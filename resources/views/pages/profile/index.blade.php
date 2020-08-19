@@ -49,7 +49,7 @@
                                             </a>
                                         </div>
                                         <div class="col px-0 pt-2">
-                                            <form method="Post" enctype="multipart/form-data" action="/imageUpload/{{auth()->user()->id}}">
+                                            <form method="Post" enctype="multipart/form-data" action="/imageUpload/{{auth()->user()->profile->id}}">
                                                 @csrf
                                                 <label class="btn btn-sm btn-outline-primary ml-50 mb-50 mb-sm-0 cursor-pointer"
                                                        for="account-upload">Upload new photo</label>
