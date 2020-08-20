@@ -17,8 +17,8 @@ class CreateUserWorkersTable extends Migration
 
             $table->primary(['user_id', 'worker_id']);
 
-            $table->integer('user_id')->unsigned();
-            $table->integer('worker_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('worker_id');
             $table->timestamps();
 
             $table->foreign('user_id')

@@ -42,16 +42,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
+            'user_name' => ['required', 'string', 'unique:profiles','max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
 
-        User::create([
+        $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        return redirect('/customer/all');
+
+        $user->profile->update(["user_name" => $data['user_name']]);
+
+        return redirect('/customers/'.$user->id.'/edit');
     }
 
     /**
@@ -91,11 +95,13 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect('/customer/all');
     }
 }

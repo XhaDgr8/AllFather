@@ -6,6 +6,7 @@ use App\Helper\Helper;
 use App\Http\Requests\ProfileStoreRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Profile;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,22 +20,10 @@ class ProfileController extends Controller
     /**
      * @param array $middleware
      */
-    public function pro_profile()
-    {
-        $profile = [
-            'van_no' => Helper::authProfile('vat_no', 'Vat No'),
-            'tel' => Helper::authProfile('tel', 'Tel'),
-            'company_number' => Helper::authProfile('company_number', 'Company Number'),
-            'user_name' => Helper::authProfile('user_name', 'User Name'),
-            'address' => Helper::authProfile('address', 'Address'),
-            'website' => Helper::authProfile('website', 'Website'),
-        ];
-        return $profile;
-    }
+
     public function pView ()
     {
-        $profile = $this->pro_profile();
-        return view('pages.profile.index', compact('profile'));
+        return view('pages.profile.index');
     }
 
     public function index(Request $request)
@@ -85,9 +74,10 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($profile);
         $profile = $user->profile;
+        $roles = Role::all();
 
-        $pro_profile = $this->pro_profile();
-        return view('pages.customers.edit', compact('profile', 'pro_profile'));
+        $workers = Role::where('name', 'worker')->first()->users;
+        return view('pages.customers.edit', compact('profile', 'roles', 'workers'));
     }
 
     /**
@@ -97,11 +87,12 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request, $profile)
     {
+
         $user = User::findOrFail($profile);
         $profile = $user->profile;
         $profile->update($request->validated());
 
-        $request->session()->flash('customers.id', $profile->id);
+        $request->session()->flash('customers.updated', $profile->user . " 's information Updated successfully");
 
         return back();
     }
@@ -111,8 +102,9 @@ class ProfileController extends Controller
      * @param \App\Profile $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Profile $profile)
+    public function destroy($profile)
     {
+        dd($profile);
         $profile->delete();
 
         return redirect()->route('customers.index');
@@ -122,7 +114,7 @@ class ProfileController extends Controller
     public function imageUpload(Request $request, $customer)
     {
         $data = request()->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ]);
 
         $profile = Profile::findOrFail($customer);

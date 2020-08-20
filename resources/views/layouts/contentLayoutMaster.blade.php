@@ -18,7 +18,13 @@
     </script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script type="text/javascript">
+        /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+        particlesJS.load('particles-js', '/js/particles.json', function() {
+            console.log('callback - particles.js config loaded');
+        });
+    </script>
 </head>
 <body id="test" class="bg-light">
 <div id="app">
@@ -26,7 +32,7 @@
         <div id="sidebar" class="anime shadow-md position-relative p-0 col-auto bg-white overflow-hidden">
             <x-sidebar :subActive="$subActive" :active="$active"></x-sidebar>
         </div>
-        <div id="content" class="col anime">
+        <div id="content" class="col position-relative anime">
             <x-navbar></x-navbar>
             <main class="p-4" style="min-height: 85vh">
                 @if(isset($bread))

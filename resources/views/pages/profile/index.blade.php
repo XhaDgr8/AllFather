@@ -66,31 +66,34 @@
                                         </div>
                                     </div>
                                     <div class="separator m-0"></div>
-                                    <form method="post" action="/profile/{{auth()->user()->profile->id}}">
+                                    <form method="post" action="/customers/{{auth()->user()->profile->id}}">
                                         @csrf @method('PATCH')
                                         <div class="row">
                                             <div class="col-12">
                                                 @if($errors->any())
                                                     <p class="alert alert-danger">{{$errors->first()}}</p>
                                                 @endif
+                                                @if (session()->has('customer.updated'))
+                                                    <div class="p-0 px-2 alert alert-success">
+                                                        {{session('customer.updated')}}
+                                                    </div>
+                                                @endif
                                                 <p class="text-muted mt-2 m-0 text-center">Update you Profile Information</p>
                                             </div>
-                                            <div class="col-12">
-                                                <x-text-input attr="required" name="user_name" type="text" class="my-2" :label="$profile['user_name']" value="" />
-                                            </div>
-                                            <div class="col-12">
-                                                <x-text-input attr="required" name="address" type="text" class="my-2" :label="$profile['address']" value="" />
-                                            </div>
-                                            <div class="col-12">
-                                                <x-text-input attr="required" name="company_number" type="text" class="my-2" :label="$profile['company_number']" value="" />
-                                            </div>
-                                            <div class="col-12">
-                                                <x-text-input attr="required" name="tel" type="text" class="my-2" :label="$profile['tel']" value="" />
-                                            </div>
-                                            <div class="col-12">
-                                                <x-text-input attr="required" name="website" type="text" class="my-2" :label="$profile['website']" value="" />
-                                            </div>
-                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+                                            @php
+                                                $proArray = [
+                                                                ['field' => 'user_name', 'else' => 'User Name'],
+                                                                ['field' => 'address', 'else' => 'Address'],
+                                                                ['field' => 'company_number', 'else' => 'Company Number'],
+                                                                ['field' => 'tel', 'else' => 'Tel'],
+                                                                ['field' => 'vat_no', 'else' => 'Vat No']
+                                                            ]
+                                            @endphp
+                                            @for($i = 0; $i < count($proArray); $i++)
+                                                <x-text-input attr="" :name="$proArray[$i]['field']" type="text" class="my-3"
+                                                              :label="auth()->user()->profile->pro_profile($proArray[$i]['field'], $proArray[$i]['else'])" value="" />
+                                            @endfor
+                                            <div class="col-12 mt-3 d-flex flex-sm-row flex-column justify-content-end">
                                                 <button type="submit" class="btn btn-primary shadow-md-primary mr-sm-1 mb-1 mb-sm-0">Save
                                                     changes</button>
                                                 <button type="reset" class="btn btn-outline-warning">Cancel</button>

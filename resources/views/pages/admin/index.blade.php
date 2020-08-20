@@ -11,9 +11,8 @@
 
 @section('content')
     <div class="container">
-
         {{-- Only For Admin Use--}}
-        <div class="row shadow-md border py-3 rounded-lg border-primary">
+        <div class="row shadow-md border py-3 rounded-lg bg-white border-primary">
             <div class="col-12"><h4 class="text-center">Ability Management</h4></div>
             <div class="col-md-6">
                 <div class="card border-0 shadow-sm">
@@ -36,7 +35,7 @@
                                     @csrf @method('PATCH')
                                     <div class="row">
                                         <div class="col">
-                                            <x-text-input attr="disabled" name="name" type="text" class="" :label="$ability->name" :value="$ability->name" />
+                                            <x-text-input attr="required" name="name" type="text" class="" :label="$ability->name" :value="$ability->name" />
                                         </div>
                                         <div class="col">
                                             <x-text-input attr="required" name="label" type="text" class="" :label="$ability->label" value="" />
@@ -93,7 +92,8 @@
             </div>
         </div>
 
-        <div class="row shadow-md border my-5 py-3 rounded-lg border-primary">
+        <div class="row shadow-md border my-5 py-3 rounded-lg bg-white border-primary">
+            <div class="col-12"><h4 class="text-center">Roles Management</h4></div>
             <div class="col-md-6">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header border-0"><p class="m-0">There Are In Total {{count($roles)}} roles available</p></div>
@@ -115,7 +115,7 @@
                                     @csrf @method('PATCH')
                                     <div class="row">
                                         <div class="col">
-                                            <x-text-input attr="disabled" name="name" type="text" class="" :label="$role->name" value="" />
+                                            <x-text-input attr="required" name="name" type="text" class="" :label="$role->name" value="" />
                                         </div>
                                         <div class="col">
                                             <x-text-input attr="required" name="label" type="text" class="" :label="$role->label" value="" />
@@ -174,8 +174,8 @@
         </div>
 
         {{-- Roles Table --}}
-        <div class="container my-5 py-3">
-            <div class="card py-4 border-0 shadow-md border rounded-lg border-primary">
+        <div class="container shadow-md border rounded-lg border-primary bg-white my-5 py-3">
+            <div class="py-4">
                 <h1 class="text-center">Assign Abilities To the Roles</h1>
                 <div class="alert alert-primary mx-5">
                     <h4 class="font-weight-bold">
@@ -216,23 +216,12 @@
                             <div class="col-2">{{ $role->id }}</div>
                             <div class="col-3">{{ $role->label }}</div>
                             <div class="col-4">
-                                <div class="rel-container shadow-md rounded-sm px-2">
-                                    @foreach($role->abilities as $hasAbility)
-                                        <form class="row px-2" action="{{route('detach.ability.from.role')}}" method="post">
-                                            @csrf
-                                            <input type="hidden" value="{{$role->id}}" name="role">
-                                            <input type="hidden" value="{{$hasAbility->name}}" name="detach_ability">
-                                            <button type="button" class="btn col rounded-0 btn-sm btn-outline-primary">
-                                                {{$hasAbility->label}}
-                                            </button>
-                                            <button type="submit"
-                                                    class="btn btn-sm col-auto rounded-0 {{$role->id == 'admin' ? 'btn-secondary' : 'btn-outline-danger'}}"
-                                                {{$role->name == 'admin' ? 'disabled' : ''}}>
-                                                <x-icon i="unlink" class="m-0 p-0" h=".7rem" w=".7rem"/>
-                                            </button>
-                                        </form>
-                                    @endforeach
-                                </div>
+                                <x-assigner
+                                    :assigner="[
+                                            'for' => $role, 'to' => $role->abilities, 'route' => 'detach.ability.from.role',
+                                            'forName' => 'role', 'toName' => 'detach_ability'
+                                        ]" class=""
+                                />
                             </div>
                             <div class="col-3">
                                 <form class="mb-1 d-flex flex-row justify-content-center" action="/role/assignAbility" method="post">
@@ -258,8 +247,8 @@
         </div>
 
         {{-- Users Table --}}
-        <div class="container my-5 py-3">
-            <div class="card p-0 py-4 border-0 shadow-md border rounded-lg border-primary">
+        <div class="container shadow-md border rounded-lg border-primary bg-white my-5 py-3">
+            <div class="p-0 py-4">
                 <h1 class="text-center">User Management</h1>
                 <div class="row w-auto m-auto mx-2">
                     <div class="col-12 text-center shadow-sm border text-info font-weight-bold">
@@ -282,23 +271,12 @@
                                 <div class="col-2 py-1">{{ $user->profile->user_name }}</div>
                                 <div class="col-3 py-1">{{ $user->email }}</div>
                                 <div class="col-3 py-1">
-                                    <div class="rel-container shadow-md rounded-sm px-2">
-                                        @foreach($user->roles as $userRole)
-                                            <form class="row px-2" action="{{route('detach.role.from.user')}}" method="post">
-                                                @csrf
-                                                <input type="hidden" value="{{$user->id}}" name="user">
-                                                <input type="hidden" value="{{$userRole->name}}" name="detach_role">
-                                                <button type="button" class="btn col rounded-0 btn-sm btn-outline-primary">
-                                                    {{$userRole->label}}
-                                                </button>
-                                                <button type="submit"
-                                                        class="btn btn-sm col-auto rounded-0 {{($user->id == 1) ? $userRole->name == 'admin' ? 'btn-secondary' : 'btn-outline-danger' : 'btn-outline-danger'}}"
-                                                {{$user->id == 1 ? $userRole->name == 'admin' ? 'disabled' : '' : ''}}>
-                                                    <x-icon i="unlink" class="m-0 p-0" h=".7rem" w=".7rem"/>
-                                                </button>
-                                            </form>
-                                        @endforeach
-                                    </div>
+                                    <x-assigner
+                                        :assigner="[
+                                            'for' => $user, 'to' => $user->roles, 'route' => 'detach.role.from.user',
+                                            'forName' => 'user', 'toName' => 'detach_role'
+                                        ]" class=""
+                                    />
                                 </div>
                                 <div class="col-3 py-1">
                                     <form class="mb-1 d-flex flex-row justify-content-center"

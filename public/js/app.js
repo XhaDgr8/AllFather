@@ -14774,14 +14774,12 @@ $(document).ready(function () {
     var sidebar = 1;
 
     if (sidebar == status) {
-      $(".logo-sm").removeClass('d-md-none');
-      $(".logo-lg").removeClass('d-md-block');
+      $(".logo-text").removeClass('d-md-block');
       $("#sidebar").css('width', '4.5rem');
       $('#content').css('min-width', 'calc(100% - 4.5rem)');
       $('.sp-lg').css('display', 'none');
     } else {
-      $(".logo-sm").addClass('d-md-none');
-      $(".logo-lg").addClass('d-md-block');
+      $(".logo-text").addClass('d-md-block');
       $("#sidebar").css('width', '15rem');
       $('#content').css('min-width', 'calc(100% - 15rem)');
       $('.sp-lg').css('display', 'inline');

@@ -28,7 +28,6 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 
 
 Route::middleware('auth')->group(function(){
-
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/pView', 'ProfileController@pView')->name('customers.pView');
@@ -37,15 +36,18 @@ Route::middleware('auth')->group(function(){
 
     // Customers All
     Route::get('/customer/all', 'UserController@customers')
-        ->name('customer.all')->middleware('can:worker', 'can:admin');
+        ->name('customer.all');
 
     // Create Customer View
     Route::get('/customer/create', 'UserController@create')
-        ->name('customer.create')->middleware('can:worker', 'can:admin');
+        ->name('customer.create');
 
     // Create Customer
     Route::patch('/customer/create', 'UserController@store')
-        ->name('new.customer.create')->middleware('can:worker', 'can:admin');
+        ->name('new.customer.create');
+
+    // Delete Customer
+    Route::delete('/customer/{user}', 'UserController@destroy');
 
     Route::middleware('can:admin')->group(function(){
 
@@ -54,7 +56,7 @@ Route::middleware('auth')->group(function(){
 
         // Assign Workers to Customers
         Route::post('/assignWorker', 'AssignmentController@assignWorker')->name('assign.worker.to.customer');
-        Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')->name('unAssign.worker.from.customer');
+        Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')->name('unAssign.worker.to.customer');
 
         Route::get('/ability_role', 'AssignmentController@index')->name('ability.role');
 

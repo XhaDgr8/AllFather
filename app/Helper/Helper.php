@@ -17,7 +17,4 @@ class Helper
         return $avatar;
     }
 
-    public static function authProfile($field, $else) {
-        return auth()->user()->profile->$field != '' ? auth()->user()->profile->$field : $else;
-    }
 }

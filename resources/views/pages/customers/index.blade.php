@@ -27,7 +27,7 @@
             </div>
 
             @foreach($customers as $customer)
-                <div class="row text-muted text-center bg-white c-it anime my-2 shadow-md hover-up rounded-lg">
+                <div class="row text-muted text-center bg-white c-it border border-primary anime my-2 shadow-md hover-up rounded-lg">
 
                     <div class="col-1 py-2">
                         <x-avatar class="shadow-sm" :for="$customer->profile->avatar" radius="10%" w="4rem" h="4rem"/>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-2 py-1">
                         @foreach($customer->user_worker as $worker)
-                            <form type="hidden" id="{{$worker->id}}" class="d-none" action="{{route('unAssign.worker.from.customer')}}" method="post">
+                            <form type="hidden" id="{{$worker->id}}" class="d-none" action="{{route('unAssign.worker.to.customer')}}" method="post">
                                 @csrf
                                 <input type="hidden" value="{{$customer->id}}" name="customer">
                                 <input type="hidden" value="{{$worker->id}}" name="unAssign_worker">

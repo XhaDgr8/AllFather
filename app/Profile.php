@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helper\Helper;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
@@ -11,17 +12,7 @@ class Profile extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'user_id',
-        'worker_id',
-        'user_name',
-        'first_name',
-        'last_name',
-        'status',
-        'website',
-        'mobile',
-        'avatar',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be cast to native types.
@@ -39,5 +30,9 @@ class Profile extends Model
         return $this->belongsTo(\App\User::class);
     }
 
+    public function pro_profile($field, $else)
+    {
+        return $this->$field != '' ? $this->$field : $else;
+    }
 
 }

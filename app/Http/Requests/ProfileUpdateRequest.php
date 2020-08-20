@@ -24,15 +24,13 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_name' => 'string|max:400',
+            'user_name' => 'nullable|string|unique:profiles|max:400',
             'status' => 'nullable|string|max:400',
-            'website' => 'url',
-            'mobile' => 'string',
-            'avatar' => 'string',
-            'address' => 'string',
-            'company_number' => 'string',
-            'tel' => 'string',
-            'vat_no' => 'string',
+            'avatar' => 'nullable|string',
+            'address' => 'nullable|string',
+            'company_number' => 'nullable|string',
+            'tel' => 'nullable|string',
+            'vat_no' => 'nullable|string',
 //            'user_id' => 'required|integer|exists:users,id',
         ];
     }

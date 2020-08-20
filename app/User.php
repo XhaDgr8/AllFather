@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->belongsToMany(\App\Role::class)->withTimestamps();
     }
 
+    public function is_role($check)
+    {
+        return $this->roles()->where('name', $check)->exists();
+    }
+
     public function assignRole($role)
     {
         if (is_string($role)) {

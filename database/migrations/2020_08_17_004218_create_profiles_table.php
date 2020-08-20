@@ -18,7 +18,6 @@ class CreateProfilesTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('user_name', 400)->nullable();
             $table->string('status', 400)->nullable();
-            $table->longText('website')->nullable();
             $table->longText('address')->nullable();
             $table->string('company_number')->nullable();
             $table->string('tel')->nullable();

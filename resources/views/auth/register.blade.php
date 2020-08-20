@@ -17,56 +17,10 @@
                             @endif
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
-                                <div class="form-group my-4">
-                                    <fieldset class="w-100 position-relative">
-                                        <input id="email" type="email"
-                                               class="form-control border @error('email') is-invalid @enderror"
-                                               name="email" value="{{ old('email') }}"
-                                               placeholder="auto"
-                                               required autocomplete="email" autofocus>
-                                        <label for="email">{{ __('E-Mail Address') }}</label>
-                                    </fieldset>
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group mt-4 mb-2">
-                                    <fieldset class="w-100 position-relative">
-                                        <input id="password" type="password"
-                                               class="form-control border @error('password') is-invalid @enderror"
-                                               name="password" value="{{ old('password') }}"
-                                               placeholder="auto"
-                                               required autocomplete="password" autofocus>
-                                        <label for="password">{{ __('Password') }}</label>
-                                    </fieldset>
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group mt-4 mb-2">
-                                    <fieldset class="w-100 position-relative">
-                                        <input id="password-confirm" type="password"
-                                               class="form-control border @error('password-confirm') is-invalid @enderror"
-                                               name="password_confirmation" value="{{ old('password-confirm') }}"
-                                               placeholder="auto"
-                                               required autocomplete="password" autofocus>
-                                        <label for="password">{{ __('Confirm Password') }}</label>
-                                    </fieldset>
-
-                                    @error('password_confirmation')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                <x-text-input attr="required" name="user_name" type="text" class="my-3" label="User Name" value="" />
+                                <x-text-input attr="required" name="email" type="text" class="my-3" label="Email" value="" />
+                                <x-text-input attr="required" name="password" type="text" class="my-3" label="Password" value="" />
+                                <x-text-input attr="required" name="password_confirmation" type="text" class="my-3" label="Confirm Password" value="" />
 
                                 <div class="form-group row my-1 g-0">
                                     <div class="col-12">
