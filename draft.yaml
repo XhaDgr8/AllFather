@@ -1,34 +1,30 @@
-#models:
-#  Profile:
-#    user_id: id foreign
-#    user_name: string:400 nullable
-#    first_name: string:400 nullable
-#    last_name: string:400 nullable
-#    status: string:400 nullable
-#    website: longtext nullable
-#    mobile: integer nullable
-#    avatar: longtext nullable
-#    relationships:
-#      belongsTo: User
-#
-#  Role:
-#    id: bigIncrements
-#    name: string
-#    label: string nullable
-#    relationships:
-#      belongsToMany: Ability
-#
-#  Ability:
-#    id: bigIncrements
-#    name: string
-#    label: string nullable
-#    relationships:
-#      belongsToMany: Role
-#
-#controllers:
-#  Profile:
-#    resource
-#  Role:
-#    resource
-#  Ability:
-#    resource
+models:
+  SubProduct:
+    created_by: id foreign:user
+    updated_by: id foreign:user
+    cat_number: string:400 nullable
+    name: string:400 nullable
+    description: longText nullable
+    country_of_origin: string:400 nullable
+    facility_name: string:400 nullable
+    buying_unit: string:400 nullable
+    price_per_unit: string:400 nullable
+    production_unit: string:400 nullable
+    production_price: string:400 nullable
+    quantity: string:400 nullable
+    price_for_customer: string:400 nullable
+    price_for_admin: string:400 nullable
+    other_costs: string:400 nullable
+    image: string:400 nullable
+    image_alt: string:400 nullable
+    category: string:400 nullable
+    key_words: string:400 nullable
+    relationships:
+      hasOne: User
+      hasMany: User
+
+controllers:
+  SubProduct:
+    resource
+
+seeders: SubProduct

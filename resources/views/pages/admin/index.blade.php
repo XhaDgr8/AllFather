@@ -35,7 +35,7 @@
                                     @csrf @method('PATCH')
                                     <div class="row">
                                         <div class="col">
-                                            <x-text-input attr="required" name="name" type="text" class="" :label="$ability->name" :value="$ability->name" />
+                                            <x-text-input attr="required" name="name" type="text" class="" :label="$ability->name" value="" />
                                         </div>
                                         <div class="col">
                                             <x-text-input attr="required" name="label" type="text" class="" :label="$ability->label" value="" />

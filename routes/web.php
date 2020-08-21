@@ -26,6 +26,17 @@ Auth::routes();
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
+Route::get('/test', function (){
+//    $subProducts = new \App\SubProduct();
+//    $subProducts->name = 'subee';
+//    $subProducts->created_by = 1;
+//    $subProducts->updated_by = 1;
+//    $subProducts->save();
+    $subProducts = \App\SubProduct::first();
+    $user = \App\User::first();
+
+    dd($user->updatedSubProduct, $user->createSubProduct, $subProducts->updatedBy);
+});
 
 Route::middleware('auth')->group(function(){
     Route::get('/home', 'HomeController@index')->name('home');
@@ -49,28 +60,36 @@ Route::middleware('auth')->group(function(){
     // Delete Customer
     Route::delete('/customer/{user}', 'UserController@destroy');
 
+    Route::resource('sub-product', 'SubProductController');
+
     Route::middleware('can:admin')->group(function(){
 
         Route::resource('role', 'RoleController');
         Route::resource('ability', 'AbilityController');
 
         // Assign Workers to Customers
-        Route::post('/assignWorker', 'AssignmentController@assignWorker')->name('assign.worker.to.customer');
-        Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')->name('unAssign.worker.to.customer');
+        Route::post('/assignWorker', 'AssignmentController@assignWorker')
+            ->name('assign.worker.to.customer');
+        Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')
+            ->name('unAssign.worker.to.customer');
 
         Route::get('/ability_role', 'AssignmentController@index')->name('ability.role');
 
         // Assign Roles to Users
-        Route::post('/user/assignRole', 'AssignmentController@storeRole')->name('assign.role.to.user');
+        Route::post('/user/assignRole', 'AssignmentController@storeRole')
+            ->name('assign.role.to.user');
 
         // Detach Roles From Users
-        Route::post('/user/detachRole', 'AssignmentController@detachRoleFromUser')->name('detach.role.from.user');
+        Route::post('/user/detachRole', 'AssignmentController@detachRoleFromUser')
+            ->name('detach.role.from.user');
 
         // Assign to Ability To Roles
-        Route::post('/role/assignAbility', 'AssignmentController@storeAbility')->name('assign.ability.to.role');
+        Route::post('/role/assignAbility', 'AssignmentController@storeAbility')
+            ->name('assign.ability.to.role');
 
         // Remove to Ability From Roles
-        Route::post('/role/detachAbility', 'AssignmentController@detachAbilityFromRole')->name('detach.ability.from.role');
+        Route::post('/role/detachAbility', 'AssignmentController@detachAbilityFromRole')
+            ->name('detach.ability.from.role');
     });
 
 });

@@ -31,48 +31,23 @@
         <div class="accordion" id="accord">
             <div class="container">
                 @if(auth()->user()->is_role('admin'))
-                    @php
-                        $menu = [
-                                    'active' => $active,
-                                    'id' => 'ability_role',
-                                    'name' => 'Roles & Abilities',
-                                    'icon' => 'stayLinked',
-                                    'url' => '/ability_role'
-                                ];
-                        $subs = [];
-                    @endphp
-                    <x-menue-items :subs="$subs" :menu="$menu"/>
-
-                    @php
-                        $menu = [
-                            "url" => "#",
-                            "name" => "Customers",
-                            "id" => "customers",
-                            "icon" => "home",
-                            "active" => $active
-                        ];
-                        $subs = [
-                            ["url" => "/customer/create", "name" => "Create Customer", "id" => 'customer_create', 'active' => $subActive],
-                            ["url" => "/customer/all", "name" => "All Customers", "id" => 'customer_all', 'active' => $subActive]
-                        ]
-                    @endphp
-                    <x-menue-items :subs="$subs" :menu="$menu"/>
+                    @foreach($menus as $menu)
+                        <x-menue-items :menu="$menu" :subs="$menu['sub']"/>
+                    @endforeach
                 @else
                     @if(auth()->user()->is_role('worker'))
-                        @php
-                            $menu = [
-                                "url" => "#",
-                                "name" => "Customers",
-                                "id" => "customers",
-                                "icon" => "home",
-                                "active" => $active
-                            ];
-                            $subs = [
-                                ["url" => "/customer/create", "name" => "Create Customer", "id" => 'customer_create', 'active' => $subActive],
-                                ["url" => "/customer/all", "name" => "All Customers", "id" => 'customer_all', 'active' => $subActive]
-                            ]
-                        @endphp
-                        <x-menue-items :subs="$subs" :menu="$menu"/>
+                        @foreach($menus as $menu)
+                            @if(in_array('worker', $menu['roles']))
+                                <x-menue-items :menu="$menu" :subs="$menu['sub']"/>
+                            @endif
+                        @endforeach
+                    @endif
+                    @if(auth()->user()->is_role('customer'))
+                        @foreach($menus as $menu)
+                            @if(in_array('customer', $menu['roles']))
+                                <x-menue-items :menu="$menu" :subs="$menu['sub']"/>
+                            @endif
+                        @endforeach
                     @endif
                 @endif
             </div>

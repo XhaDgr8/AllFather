@@ -12,7 +12,6 @@ class AssignmentController extends Controller
 {
 
     public function index () {
-        $this->authorize('page_admin');
         $users = User::all();
         $roles = Role::all();
         $abilities = Ability::all();
