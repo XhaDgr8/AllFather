@@ -7,8 +7,9 @@ $line-height-base: 1.6;
 // Colors
 $light: #F0F2F5;//#F0F2F5//#F8F8F8
 $primary:  #7367F0;//#7367F0//#29AB87
-$secondary:  #29ab87;
+$secondary: #8adbc0;
 $black:    #000;
+$danger: red;
 
 $input-btn-padding-y:         .275rem;
 $input-btn-padding-x:         .75rem;
@@ -61,6 +62,19 @@ $breadcrumb-divider:                quote(">>");
 .btn-primary {
     background:  linear-gradient(118deg, $primary,rgba($primary,.7))!important;
     color: white!important;
+}
+.btn {
+    transition: all .2s ease;
+}
+.btn-primary:hover {
+    background:  darken($primary, 5%)!important;
+    transform: translateY(-10%)!important;
+    transform: scale(1.5);
+}
+.btn-danger:hover {
+    background: darken($danger, 5%)!important;
+    transform: translateY(-10%)!important;
+    transform: scale(2);
 }
 
 .bg-primary {
@@ -207,3 +221,24 @@ fieldset {
     cursor: pointer!important;
 }
 
+.file-upload {
+    border: dashed $primary .2rem;
+    background-color: rgba($primary, .1);
+
+    &.dragging {
+        background-color: rgba($secondary, .1)!important;
+        border: dashed $secondary .2rem!important;
+    }
+
+}
+.btn{
+    position: relative;
+}
+.cursor-pointer {
+    cursor: pointer!important;
+}
+
+.modal-vue{
+    top: 0; left: 0;z-index: 999999999;
+    background-color: rgba($primary, 0.5)!important;
+}

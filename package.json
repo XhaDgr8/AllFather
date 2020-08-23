@@ -25,6 +25,7 @@
     "dependencies": {
         "bootstrap": "^5.0.0-alpha1",
         "vue-axios": "^2.1.5",
-        "vue-social-auth": "^1.4.3"
+        "vue-social-auth": "^1.4.3",
+        "vue-toastr": "^2.1.2"
     }
 }

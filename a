@@ -1,0 +1,47 @@
+[33mcommit b18e809b773ae1aaf6e72198f8c17d5742cb97a6[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Haider Shah <stfox003@gmail.com>
+Date:   Fri Aug 21 09:57:37 2020 +0500
+
+    SubProducts Systems created without Image Upload
+
+[33mcommit f167e887683110fa9048365a8835f26f3c114a46[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Haider Shah <stfox003@gmail.com>
+Date:   Thu Aug 20 10:39:48 2020 +0500
+
+    Roles Abilities Users Customers Profiles Front-End Back-End All DONE
+
+[33mcommit af6f0314774b8807efae7070f471442131750b09[m
+Author: Haider Shah <stfox003@gmail.com>
+Date:   Wed Aug 19 06:57:40 2020 +0500
+
+    Moving Good User Management Completed
+
+[33mcommit fb50d8d33fbd52711413705144f0969a47edb792[m
+Author: Haider Shah <stfox003@gmail.com>
+Date:   Tue Aug 18 17:46:29 2020 +0500
+
+    Adding Laravel Activity Log
+
+[33mcommit 3a77e8dd70cccf944bc1fbc81b7e6afc090a83cd[m
+Author: Haider Shah <stfox003@gmail.com>
+Date:   Tue Aug 18 05:41:22 2020 +0500
+
+    Huge Success Multiusers System Working Properly - next step Users CRUD page
+
+[33mcommit e46f9d630b95aa4b31ce7753a26e55e220076274[m
+Author: Haider Shah <stfox003@gmail.com>
+Date:   Mon Aug 17 05:09:43 2020 +0500
+
+    Update:2 Image Upload Ready - Social Logins Working
+
+[33mcommit d58f2433feba403ff5c3e5f82b269f5aa86eb110[m
+Author: Haider Shah <stfox003@gmail.com>
+Date:   Sat Aug 15 06:21:56 2020 +0500
+
+    The Gode Father Directory that can be used to build anything on top of it
+
+[33mcommit 67754c6e85cf16bebeec52ef64619a25234090e0[m
+Author: Haider Shah <stfox003@gmail.com>
+Date:   Sat Aug 15 06:13:26 2020 +0500
+
+    created and initialized plus done initial comtit for AllFather

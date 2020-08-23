@@ -32,7 +32,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-auto d-flex flex-row justify-content-start">
-                            <p class="mt-3 m-0 mr-2">This Product Was Created On: <span class="text-primary font-weight-bold">{{$subProduct->created_at}}</span> BY </p>
+                            <p class="mt-3 m-0 mr-2">This Product Was Created On:
+                                <span class="text-primary font-weight-bold">{{$subProduct->created_at}}</span> BY </p>
                             <div class="d-inline m-0 mt-2">
                                 <button class="anime btn-sm btn my-1 px-2 rounded-pill btn-primary
                             shadow-sm-primary d-flex flex-row justify-content-around">
@@ -56,9 +57,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-                <div class="d-flex align-items-center justify-content-center pl-2">
-                    <x-sub-product-avatar class="shadow-lg py-2 rounded-lg" :alt="$subProduct->image" for="" radius="" w="100%" h="100%"/>
+            <div class="col-12 col-md-5 pt-5">
+                <div class="container pl-4 mb-3">
+                    <sub-product-image :id="{{$subProduct->id}}"></sub-product-image>
+                </div>
+                <div class="w-100 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+                    <div class="d-flex align-items-center justify-content-center pl-2">
+                        <x-sub-product-avatar class="shadow-lg my-2 rounded-lg"
+                                              :alt="$subProduct->name" :for="$subProduct->image" radius="" w="100%" h="100%"/>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-6 pt-3">

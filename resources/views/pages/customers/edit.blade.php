@@ -26,13 +26,7 @@
                         </a>
                     </div>
                     <div class="col px-0 pt-2">
-                        <form method="Post" enctype="multipart/form-data" action="/imageUpload/{{$profile->id}}">
-                            @csrf
-                            <label class="btn btn-sm btn-outline-primary ml-50 mb-50 mb-sm-0 cursor-pointer"
-                                   for="account-upload">Select new photo</label>
-                            <input type="file" name="file" id="account-upload" hidden>
-                            <button type="submit" class="btn btn-sm btn-primary ml-50">upload</button>
-                        </form>
+                        <avatar-profile :id="{{$profile->id}}"></avatar-profile>
                         <p class="text-muted ml-75 mt-50">
                             <small>
                                 Give the customer a nice looking image it can be helpfull

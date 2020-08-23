@@ -1,4 +1,4 @@
-@extends('layouts.app')
+w@extends('layouts.app')
 
 @section('content')
     profile.edit template

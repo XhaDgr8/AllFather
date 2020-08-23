@@ -10,6 +10,7 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class ProfileController extends Controller
 {
@@ -108,24 +109,5 @@ class ProfileController extends Controller
         $profile->delete();
 
         return redirect()->route('customers.index');
-    }
-
-
-    public function imageUpload(Request $request, $customer)
-    {
-        $data = request()->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
-        ]);
-
-        $profile = Profile::findOrFail($customer);
-
-        $profile_pic_path = $data['file']->store('users/'. $profile->user->id, 'public');
-        $profile_picture_array = ['avatar' => $profile_pic_path];
-
-        $profile->update(array_merge(
-            $profile_picture_array ?? []
-        ));
-
-        return back();
     }
 }

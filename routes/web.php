@@ -3,6 +3,7 @@
 use App\Ability;
 use App\Role;
 use App\User;
+use http\Client\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -25,18 +26,6 @@ Auth::routes();
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
-
-Route::get('/test', function (){
-//    $subProducts = new \App\SubProduct();
-//    $subProducts->name = 'subee';
-//    $subProducts->created_by = 1;
-//    $subProducts->updated_by = 1;
-//    $subProducts->save();
-    $subProducts = \App\SubProduct::first();
-    $user = \App\User::first();
-
-    dd($user->updatedSubProduct, $user->createSubProduct, $subProducts->updatedBy);
-});
 
 Route::middleware('auth')->group(function(){
     Route::get('/home', 'HomeController@index')->name('home');
@@ -61,6 +50,14 @@ Route::middleware('auth')->group(function(){
     Route::delete('/customer/{user}', 'UserController@destroy');
 
     Route::resource('sub-product', 'SubProductController');
+
+    // File Upload System
+    Route::post('/findFolders/{user}', 'fileSystemController@folderData');
+    Route::post('/fileUpload/{user}', 'fileSystemController@fileUpload');
+    Route::get('/avatar/{user}/{avatar}', 'fileSystemController@avatar');
+    Route::get('/subProductImage/{user}/{avatar}', 'fileSystemController@subProductImage');
+    Route::post('/deleteFile/{user}/{img}', 'fileSystemController@deleteFile');
+
 
     Route::middleware('can:admin')->group(function(){
 

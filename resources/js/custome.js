@@ -96,4 +96,33 @@ $(document).ready(function (){
         $(this).toggleClass("my-2 shadow-md my-4 shadow-lg");
     });
 
+    $('a').click(function(){
+        $(this).append(
+            '<div style="top: 0;left: 0" class="position-absolute w-100 h-auto spin_it_grow">\n' +
+                '<div class="spinner-grow m-0 p-0 mx-auto text-primary" role="status">\n' +
+                '  <span class="sr-only"></span>\n' +
+                '</div>' +
+            '</div>'
+        );
+        setTimeout(function(){
+            $('.spin_it_grow').remove(".spin_it_grow");
+        }, 1000)
+    })
+    $('button').click(function(){
+        $(this).append(
+            '<div style="top: 0;left: 0" class="position-absolute w-100 h-auto spin_it">\n' +
+                '<div class="spinner-border m-0 p-0 mx-auto text-primary" role="status">\n' +
+                '  <span class="sr-only"></span>\n' +
+                '</div>' +
+            '</div> '
+        );
+        setTimeout(function(){
+            $('.spin_it').remove(".spin_it");
+        }, 1000);
+    });
+
+    $('.modelToggler').click(function (){
+        $(".modal-vue").toggleClass('d-none d-block');
+    });
+
 })

@@ -27,7 +27,10 @@
     </script>
 </head>
 <body id="test" class="bg-light">
-<div id="app">
+<div id="app" class="position-relative">
+    <div class="modal-vue h-100 w-100 d-none p-5 position-absolute">
+        <file-system :id="{{auth()->user()->id}}" asset="{{asset('storage/users/'.auth()->user()->id.'/')}}" />
+    </div>
     <div class="layout row g-0">
         <div id="sidebar" class="anime shadow-md position-relative p-0 col-auto bg-white overflow-hidden">
             <x-sidebar :subActive="$subActive" :active="$active"></x-sidebar>

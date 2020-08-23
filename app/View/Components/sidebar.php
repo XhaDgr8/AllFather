@@ -64,8 +64,8 @@ class sidebar extends Component
                 "icon" => "plus",
                 "active" => $this->active,
                 'sub' => [
-                    ["url" => "/sub-product", "name" => "All Sub Products", "id" => 'sub_products_all', 'active' => $this->subActive],
                     ["url" => "/sub-product/create", "name" => "Create Sub Products", "id" => 'sub_products_create', 'active' => $this->subActive],
+                    ["url" => "/sub-product", "name" => "All Sub Products", "id" => 'sub_products_all', 'active' => $this->subActive],
                 ],
                 'roles' => [
                     'worker'

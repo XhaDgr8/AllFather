@@ -43,7 +43,7 @@
             @endcan
             <div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
                 <div class="d-flex align-items-center justify-content-center pl-3">
-                    <x-sub-product-avatar class="shadow-md rounded-lg" :alt="$subProduct->image" for="" radius="" w="100%" h="100%"/>
+                    <x-sub-product-avatar class="shadow-md rounded-lg" :alt="$subProduct->name" :for="$subProduct->image" radius="" w="100%" h="100%"/>
                 </div>
             </div>
             <div class="col-12 col-md-6 pt-3">

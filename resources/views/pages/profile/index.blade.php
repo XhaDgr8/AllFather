@@ -40,29 +40,16 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="account-vertical-general"
                                      aria-labelledby="account-pill-general" aria-expanded="true">
-                                    <div class="row">
+                                    <div class="row pb-2">
                                         <div class="col-auto">
                                             <a href="javascript: void(0);">
                                                 @php  $avatar = auth()->user()->profile->avatar @endphp
                                                 <x-avatar class="rounded mr-75" :for="$avatar" radius="100%"
-                                                          w="2.5rem" h="2.5rem"/>
+                                                          w="3.5rem" h="3.5rem"/>
                                             </a>
                                         </div>
                                         <div class="col px-0 pt-2">
-                                            <form method="Post" enctype="multipart/form-data" action="/imageUpload/{{auth()->user()->profile->id}}">
-                                                @csrf
-                                                <label class="btn btn-sm btn-outline-primary ml-50 mb-50 mb-sm-0 cursor-pointer"
-                                                       for="account-upload">Upload new photo</label>
-                                                <input type="file" name="file" id="account-upload" hidden>
-                                                <button type="submit" class="btn btn-sm btn-primary ml-50">submit</button>
-                                            </form>
-                                            <p class="text-muted ml-75 mt-50">
-                                                <small>
-                                                    Allowed JPG, GIF or PNG. Max
-                                                    size of
-                                                    800kB
-                                                </small>
-                                            </p>
+                                            <avatar-profile :id="{{auth()->user()->id}}"></avatar-profile>
                                         </div>
                                     </div>
                                     <div class="separator m-0"></div>
@@ -146,6 +133,6 @@
             </div>
         </div>
     </section>
-    <!-- account setting page end -->
-
 @endsection
+
+

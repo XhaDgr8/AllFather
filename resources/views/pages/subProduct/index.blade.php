@@ -56,13 +56,13 @@
                     <div class="col-2">{{ $subProduct->createdBy->profile->user_name }}</div>
                     <div class="col-auto">
                         <a href="/sub-product/{{$subProduct->id}}" class="btn btn-link float-left text-decoration-none
-                                btn-primary rounded-lg shadow-sm-primary hovered">
+                                btn-primary rounded-lg shadow-sm-primary">
                             <x-icon i="eye" class="m-0 p-0" h="1.5rem" w="1.5rem"/>
                         </a>
                     </div>
                     <div class="col-auto">
                         <a href="/sub-product/{{$subProduct->id}}/edit" class="btn btn-link float-left text-decoration-none
-                         btn-primary rounded-lg shadow-sm-primary hovered">
+                         btn-primary rounded-lg shadow-sm-primary">
                             <x-icon i="edit" class="m-0 p-0" h="1.5rem" w="1.5rem"/>
                         </a>
                     </div>
