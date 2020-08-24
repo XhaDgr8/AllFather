@@ -8,7 +8,6 @@ $(document).ready(function (){
         $('.hovered').removeClass('btn-outline-primary shadow-sm-primary');
         $(this).addClass('btn-outline-primary shadow-sm-primary');
     })
-
     function toggleSideBar() {
         if ( $('#toggle-sidebar').hasClass('open') ) {
             sidebar(1);

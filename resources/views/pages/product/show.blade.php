@@ -8,7 +8,6 @@
     @endphp
 @endsection
 @section('content')
-    <!-- app ecommerce details start -->
     <div class="bg-white border-primary border shadow-md rounded-lg">
         <div class="row mb-5 mt-2">
             @can('')
@@ -92,5 +91,77 @@
             </div>
         </div>
     </div>
-    <!-- app ecommerce details end -->
+    <div class="my-5 container">
+        <div class="row">
+            @foreach($subProducts as $subProduct)
+                <div class="col-md-4">
+                    <div class="bg-white border-primary shadow-md rounded-lg">
+                        <x-sub-product-avatar class="card-img-top"
+                                              :alt="$subProduct->name" :for="$subProduct->image"
+                                              radius="10%" w="" h=""/>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>{{ $subProduct->name }}</h4>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Cat No: </strong>
+                                        <span class="text-muted">{{ $subProduct->cat_number }}</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Category: </strong>
+                                        <span class="text-muted">{{ $subProduct->category }}</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>In Stock:
+                                            <span class="text-success">{{ $subProduct->stock_quantity }}</span>
+                                        </strong>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Price Per Unit:
+                                            <span class="text-success">{{ $subProduct->price_per_unit }}</span>
+                                        </strong>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Buying Unit:
+                                            <span class="text-info">{{ $subProduct->buying_unit }}</span>
+                                        </strong>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Production Unit:
+                                            <span class="text-info">{{ $subProduct->production_unit }}</span>
+                                        </strong>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <a href="/sub-product/{{$subProduct->id}}"
+                                       class="btn btn-link float-left btn-block text-decoration-none
+                                btn-primary rounded-lg shadow-sm-primary">
+                                        <x-icon i="eye" class="m-0 p-0" h="1.5rem" w="1.5rem"/>
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="/sub-product/{{$subProduct->id}}/edit" class="btn btn-block btn-link float-left text-decoration-none
+                         btn-primary rounded-lg shadow-sm-primary">
+                                        <x-icon i="edit" class="m-0 p-0" h="1.5rem" w="1.5rem"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 @endsection

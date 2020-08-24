@@ -159,7 +159,7 @@
             </div>
             <div class="col-md-6">
                 <div class="bg-white border-primary border shadow-md rounded-lg px-2 py-3">
-                    <h3 class="text-center text-primary">Add Products</h3>
+                    <h3 class="text-center text-primary">Add Sub Products</h3>
                     <div style="max-height: 25rem; overflow-y: scroll">
                         @foreach($subProducts as $subProduct)
                             <div class="row w-100 mx-auto rounded-lg p-2 shadow-md mb-3">

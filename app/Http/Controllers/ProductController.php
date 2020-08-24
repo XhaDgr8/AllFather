@@ -52,7 +52,8 @@ class ProductController extends Controller
      */
     public function show(Request $request, Product $product)
     {
-        return view('pages.product.show', compact('product'));
+        $subProducts = $product->subProducts;
+        return view('pages.product.show', compact('product', 'subProducts'));
     }
 
     /**

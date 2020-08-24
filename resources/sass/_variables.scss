@@ -1,15 +1,16 @@
 // Typography
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-$font-family-sans-serif: 'Roboto', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+// stylelint-disable value-keyword-case
+$font-family-sans-serif:      'Montserrat',system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace:       'Montserrat',SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 // Colors
-$light: #F0F2F5;//#F0F2F5//#F8F8F8
+$light: #F8F8F8;//#F0F2F5//#F8F8F8
 $primary:  #7367F0;//#7367F0//#29AB87
 $secondary: #8adbc0;
 $black:    #000;
-$danger: red;
+$danger: #f54d4d;
 
 $input-btn-padding-y:         .275rem;
 $input-btn-padding-x:         .75rem;
@@ -28,7 +29,7 @@ $shadow-primary-lg:               0px 24px 75px -10px rgba($primary,0.5),
                                   0 10px 10px -5px rgba($primary, 0.55);
 $shadow-primary-inset:            inset 0 1px 2px rgba($primary, .075);
 
-$box-shadow:                  0 .5rem 1rem rgba($black, .15);
+$box-shadow:                  0 4px 25px 0 rgba(0,0,0,.1);//0 .5rem 1rem rgba($black, .15);
 $box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
 $box-shadow-lg:               0 1rem 3rem rgba($black, .175);
 $box-shadow-inset:            inset 0 1px 2px rgba($black, .075);
@@ -247,4 +248,34 @@ fieldset {
 .modal-vue{
     top: 0; left: 0;z-index: 999999999;
     background-color: rgba($primary, 0.5)!important;
+}
+
+.img-zoom {
+    animation: monFrame 40s ease-in-out infinite alternate;
+}
+
+@keyframes monFrame {
+    from {transform: scale(1);}
+    to {transform: scale(1.3)}
+}
+.fadeInUp {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0,6rem,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+
+.hover-top:hover {
+    margin-top: -.5rem;
+    transform: scale(1.01);
 }
