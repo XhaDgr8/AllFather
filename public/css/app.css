@@ -39,6 +39,14 @@
   transform: scale(2);
 }
 
+.color-danger {
+  color: red !important;
+}
+
+.color-danger:hover {
+  color: white !important;
+}
+
 .bg-primary {
   background: linear-gradient(118deg, #7367F0, rgba(115, 103, 240, 0.7)) !important;
   color: white !important;

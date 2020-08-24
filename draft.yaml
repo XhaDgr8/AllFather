@@ -1,30 +1,24 @@
-models:
-  SubProduct:
-    created_by: id foreign:user
-    updated_by: id foreign:user
-    cat_number: string:400 nullable
-    name: string:400 nullable
-    description: longText nullable
-    country_of_origin: string:400 nullable
-    facility_name: string:400 nullable
-    buying_unit: string:400 nullable
-    price_per_unit: string:400 nullable
-    production_unit: string:400 nullable
-    production_price: string:400 nullable
-    quantity: string:400 nullable
-    price_for_customer: string:400 nullable
-    price_for_admin: string:400 nullable
-    other_costs: string:400 nullable
-    image: string:400 nullable
-    image_alt: string:400 nullable
-    category: string:400 nullable
-    key_words: string:400 nullable
-    relationships:
-      hasOne: User
-      hasMany: User
-
-controllers:
-  SubProduct:
-    resource
-
-seeders: SubProduct
+#models:
+#  Product:
+#    created_by: id foreign:user nullable
+#    updated_by: id foreign:user nullable
+#    cat_number: string:400 nullable
+#    name: string:400 nullable
+#    description: longText nullable
+#    stock_quantity: integer nullable
+#    price_for_customer: integer nullable
+#    price_for_admin: integer nullable
+#    other_costs: integer nullable
+#    image: longText nullable
+#    image_alt: longText nullable
+#    category: string:400 nullable
+#    key_words: string:400 nullable
+#    relationships:
+#      hasOne: User
+#      hasMany: User
+#
+#controllers:
+#  Product:
+#    resource
+#
+#seeders: Product

@@ -14,7 +14,7 @@
             ['price_per_unit', $subProduct->price_per_unit!= "" ? $subProduct->price_per_unit: 'Price Per Unit'],
             ['production_unit', $subProduct->production_unit != "" ? $subProduct->production_unit : 'Production Unit'],
             ['production_price', $subProduct->production_price != "" ? $subProduct->production_price : 'Production Price'],
-            ['quantity', $subProduct->quantity != "" ? $subProduct->quantity : 'Quantity'],
+            ['stock_quantity', $subProduct->stock_quantity != "" ? $subProduct->stock_quantity : 'Stock Quantity'],
             ['price_for_customer', $subProduct->price_for_customer != "" ? $subProduct->price_for_customer : 'Price For Customer'],
             ['price_for_admin',  $subProduct->price_for_admin != "" ? $subProduct->price_for_admin : 'Price For Admin'],
             ['other_costs',  $subProduct->other_costs != "" ? $subProduct->other_costs :'Other Costs'],
@@ -59,7 +59,7 @@
             </div>
             <div class="col-12 col-md-5 pt-5">
                 <div class="container pl-4 mb-3">
-                    <sub-product-image :id="{{$subProduct->id}}"></sub-product-image>
+                    <sub-product-image url="subProductImage" :id="{{$subProduct->id}}"></sub-product-image>
                 </div>
                 <div class="w-100 d-flex align-items-center justify-content-center mb-2 mb-md-0">
                     <div class="d-flex align-items-center justify-content-center pl-2">

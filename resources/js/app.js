@@ -15,9 +15,11 @@ Vue.use(Toastr);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('attach-to-product', require('./components/AttachToProduct.vue').default);
 Vue.component('file-system', require('./components/FileSystem.vue').default);
 Vue.component('avatar-profile', require('./components/Avatar.vue').default);
 Vue.component('sub-product-image', require('./components/SubProductImage.vue').default);
+Vue.component('products-sub-products', require('./components/ProductsSubProducts.vue').default);
 
 const app = new Vue({
     el: '#app',

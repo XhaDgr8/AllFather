@@ -70,6 +70,20 @@ class sidebar extends Component
                 'roles' => [
                     'worker'
                 ]
+            ],
+            [
+                "url" => "#",
+                "name" => "Products",
+                "id" => "products",
+                "icon" => "plus",
+                "active" => $this->active,
+                'sub' => [
+                    ["url" => "/product/create", "name" => "Create Products", "id" => 'products_create', 'active' => $this->subActive],
+                    ["url" => "/product", "name" => "All Products", "id" => 'products_all', 'active' => $this->subActive],
+                ],
+                'roles' => [
+                    'worker'
+                ]
             ]
         ];
     }

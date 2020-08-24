@@ -6,15 +6,14 @@
 
 <script>
 export default {
-    props: ['id'],
+    props: ['id','url'],
     data: () => ({
-        imgSrc: ''
+        imgSrc: '',
     }),
     created() {
-        console.log(this.type)
         Event.$on('theSrc', (src)=>{
             this.imgSrc = src;
-            axios.get('/subProductImage/'+this.id+'/'+ this.imgSrc)
+            axios.get('/'+this.url+'/'+this.id+'/'+ this.imgSrc)
                 .then(response => {
                     this.$toastr.s('Image Updated SuccessFully');
                     window.location.reload()

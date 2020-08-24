@@ -1,21 +1,22 @@
 created:
-    - database/migrations/2020_08_20_133437_create_sub_products_table.php
-    - app/SubProduct.php
-    - database/factories/SubProductFactory.php
-    - database/seeds/SubProductSeeder.php
-    - app/Http/Controllers/SubProductController.php
-    - app/Http/Requests/SubProductStoreRequest.php
-    - app/Http/Requests/SubProductUpdateRequest.php
-    - resources/views/subProduct/index.blade.php
-    - resources/views/subProduct/create.blade.php
-    - resources/views/subProduct/show.blade.php
-    - resources/views/subProduct/edit.blade.php
-    - tests/Feature/Http/Controllers/SubProductControllerTest.php
+    - database/migrations/2020_08_23_064236_create_products_table.php
+    - app/Product.php
+    - database/factories/ProductFactory.php
+    - database/seeds/ProductSeeder.php
+    - app/Http/Controllers/ProductController.php
+    - app/Http/Requests/ProductStoreRequest.php
+    - app/Http/Requests/ProductUpdateRequest.php
+    - resources/views/product/index.blade.php
+    - resources/views/product/create.blade.php
+    - resources/views/product/show.blade.php
+    - resources/views/product/edit.blade.php
+    - tests/Feature/Http/Controllers/ProductControllerTest.php
 updated:
     - routes/web.php
 models:
     Ability: { name: string, label: 'string nullable' }
     Profile: { user_id: 'biginteger unsigned', user_name: 'string:400 nullable', status: 'string:400 nullable', address: 'text nullable', company_number: 'string nullable', tel: 'string nullable', vat_no: 'string nullable', avatar: 'text nullable' }
     Role: { name: string, label: 'string nullable' }
+    SubProduct: { cat_number: 'string:400 nullable', name: 'string:400 nullable', description: 'text nullable', country_of_origin: 'string:400 nullable', facility_name: 'string:400 nullable', buying_unit: 'string:400 nullable', price_per_unit: 'string:400 nullable', production_unit: 'string:400 nullable', production_price: 'string:400 nullable', stock_quantity: 'string:400 nullable', price_for_customer: 'string:400 nullable', price_for_admin: 'string:400 nullable', other_costs: 'string:400 nullable', image: 'string:400 nullable', image_alt: 'string:400 nullable', category: 'string:400 nullable', key_words: 'string:400 nullable', created_by: 'biginteger unsigned nullable', updated_by: 'biginteger unsigned nullable' }
     User: { provider_name: 'string nullable', provider_id: 'text nullable', email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
-    SubProduct: { user_id: 'id foreign:user', created_by: 'id foreign:user', updated_by: 'id foreign:user', cat_number: 'string:400 nullable', name: 'string:400 nullable', description: 'longText nullable', country_of_origin: 'string:400 nullable', facility_name: 'string:400 nullable', buying_unit: 'string:400 nullable', price_per_unit: 'string:400 nullable', production_unit: 'string:400 nullable', production_price: 'string:400 nullable', quantity: 'string:400 nullable', price_for_customer: 'string:400 nullable', price_for_admin: 'string:400 nullable', other_costs: 'string:400 nullable', image: 'string:400 nullable', image_alt: 'string:400 nullable', category: 'string:400 nullable', key_words: 'string:400 nullable', relationships: { hasOne: User, hasMany: User } }
+    Product: { created_by: 'id foreign:user nullable', updated_by: 'id foreign:user nullable', cat_number: 'string:400 nullable', name: 'string:400 nullable', description: 'longText nullable', stock_quantity: 'integer nullable', price_for_customer: 'integer nullable', price_for_admin: 'integer nullable', other_costs: 'integer nullable', image: 'longText nullable', image_alt: 'longText nullable', category: 'string:400 nullable', key_words: 'string:400 nullable', relationships: { hasOne: User, hasMany: User } }

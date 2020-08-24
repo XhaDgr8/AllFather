@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Profile;
 use App\SubProduct;
 use App\User;
@@ -45,7 +46,7 @@ class fileSystemController extends Controller
         ]);
     }
 
-    public function avatar(Request $request,Profile $user,$avatar)
+    public function avatar(Profile $user,$avatar)
     {
         $oldPath = 'storage/users/'.auth()->user()->id; // publc/images/1.jpg
         $newPath = 'storage/usedByDB/'.$user->id; // publc/images/2.jpg
@@ -66,7 +67,7 @@ class fileSystemController extends Controller
         return "updated";
     }
 
-    public function subProductImage(Request $request,SubProduct $user,$avatar)
+    public function imgProduct($user,$avatar)
     {
         $oldPath = 'storage/users/'.auth()->user()->id; // publc/images/1.jpg
         $newPath = 'storage/usedByDB/'.$user->id; // publc/images/2.jpg
@@ -85,6 +86,16 @@ class fileSystemController extends Controller
             }
         }
         return "updated";
+    }
+
+    public function subProductImage(SubProduct $user,$avatar)
+    {
+        $this->imgProduct($user, $avatar);
+    }
+
+    public function productImage(Product $user,$avatar)
+    {
+        $this->imgProduct($user, $avatar);
     }
 
 }

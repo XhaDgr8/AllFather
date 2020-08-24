@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SubProduct extends Model
+class Product extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -17,12 +17,6 @@ class SubProduct extends Model
         'cat_number',
         'name',
         'description',
-        'country_of_origin',
-        'facility_name',
-        'buying_unit',
-        'price_per_unit',
-        'production_unit',
-        'production_price',
         'stock_quantity',
         'price_for_customer',
         'price_for_admin',
@@ -54,11 +48,38 @@ class SubProduct extends Model
         return $this->hasOne(\App\User::class, 'id', 'updated_by');
     }
 
-    public function products()
+    public function subProducts ()
     {
         return $this->belongsToMany(
-            Product::class, 'products_sub_products', 'product_id', 'sub_product_id'
+            SubProduct::class, 'products_sub_products', 'product_id', 'sub_product_id'
         )->withPivot('quantity');
+    }
+
+    public function qtty($subProductId)
+    {
+        return $this->subProducts()
+            ->where('sub_product_id', $subProductId)
+            ->firstOrFail()->pivot->quantity;
+    }
+
+    public function attachedToProduct($sub_product_id)
+    {
+        $this->subProducts()->sync($sub_product_id, false);
+    }
+
+    public function detachedFromProduct($sub_product_id)
+    {
+        $this->subProducts()->detach($sub_product_id);
+    }
+
+    public function perUnit()
+    {
+        $subProducts = $this->subProducts;
+        $qtty = 0;
+        foreach ($subProducts as $subProduct){
+            $qtty = $qtty + $this->qtty($subProduct->id) * $subProduct->price_per_unit;
+        }
+        return $qtty;
     }
 
 }

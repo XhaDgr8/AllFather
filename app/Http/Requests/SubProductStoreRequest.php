@@ -35,7 +35,7 @@ class SubProductStoreRequest extends FormRequest
             'price_per_unit' => 'nullable|string|max:400',
             'production_unit' => 'nullable|string|max:400',
             'production_price' => 'nullable|string|max:400',
-            'quantity' => 'nullable|string|max:400',
+            'stock_quantity' => 'nullable|string|max:400',
             'price_for_customer' => 'nullable|string|max:400',
             'price_for_admin' => 'nullable|string|max:400',
             'other_costs' => 'nullable|string|max:400',

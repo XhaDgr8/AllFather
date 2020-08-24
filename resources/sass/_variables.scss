@@ -76,6 +76,12 @@ $breadcrumb-divider:                quote(">>");
     transform: translateY(-10%)!important;
     transform: scale(2);
 }
+.color-danger {
+    color: $danger!important;
+}
+.color-danger:hover {
+    color: white!important;
+}
 
 .bg-primary {
     background:  linear-gradient(118deg, $primary,rgba($primary,.7))!important;

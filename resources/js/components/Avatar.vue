@@ -16,7 +16,7 @@ export default {
             axios.get('/avatar/'+this.id+'/'+ this.imgSrc)
                 .then(response => {
                     this.$toastr.s('Image Updated SuccessFully');
-                    window.location.reload()
+                    window.location.reload();
                 });
         });
     }

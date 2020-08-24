@@ -1,10 +1,10 @@
 @extends('layouts.contentLayoutMaster')
 @section('page-vars')
     @php
-        $active = "sub_products";
-        $subActive = 'sub_products_all';
-        $title = 'All Sub Products';
-        $bread = ['Sub Products' ,'active' => 'All Sub Products'];
+        $active = "products";
+        $subActive = 'products_all';
+        $title = 'All Products';
+        $bread = ['Products' ,'active' => 'All Products'];
     @endphp
 @endsection
 @section('content')
@@ -26,25 +26,25 @@
                 <div class="col"><p class="m-0">Actions</p></div>
             </div>
 
-            @foreach($subProducts as $subProduct)
+            @foreach($products as $product)
                 <div class="row text-muted py-2 text-center bg-white c-it border border-primary anime my-2 shadow-md hover-up rounded-lg">
-                    <div class="col-1">{{ $subProduct->cat_number }}</div>
+                    <div class="col-1">{{ $product->cat_number }}</div>
                     <div class="col-1">
-                        <x-sub-product-avatar class="shadow-sm" :alt="$subProduct->name" :for="$subProduct->image" radius="10%" w="4rem" h="4rem"/>
+                        <x-sub-product-avatar class="shadow-sm" :alt="$product->name" :for="$product->image" radius="10%" w="4rem" h="4rem"/>
                     </div>
-                    <div class="col-2">{{ $subProduct->name }}</div>
-                    <div class="col-2">{{ $subProduct->category }}</div>
-                    <div class="col-1">{{ $subProduct->stock_quantity }}</div>
-                    <div class="col-1">{{ $subProduct->price_per_unit }}</div>
-                    <div class="col-2">{{ $subProduct->createdBy->profile->user_name }}</div>
+                    <div class="col-2">{{ $product->name }}</div>
+                    <div class="col-2">{{ $product->category }}</div>
+                    <div class="col-1">{{ $product->stock_quantity }}</div>
+                    <div class="col-1">{{ $product->price_per_unit }}</div>
+                    <div class="col-2">{{ $product->createdBy->profile->user_name }}</div>
                     <div class="col-auto">
-                        <a href="/sub-product/{{$subProduct->id}}" class="btn btn-link float-left text-decoration-none
+                        <a href="/product/{{$product->id}}" class="btn btn-link float-left text-decoration-none
                                 btn-primary rounded-lg shadow-sm-primary">
                             <x-icon i="eye" class="m-0 p-0" h="1.5rem" w="1.5rem"/>
                         </a>
                     </div>
                     <div class="col-auto">
-                        <a href="/sub-product/{{$subProduct->id}}/edit" class="btn btn-link float-left text-decoration-none
+                        <a href="/product/{{$product->id}}/edit" class="btn btn-link float-left text-decoration-none
                          btn-primary rounded-lg shadow-sm-primary">
                             <x-icon i="edit" class="m-0 p-0" h="1.5rem" w="1.5rem"/>
                         </a>

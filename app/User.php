@@ -109,6 +109,8 @@ class User extends Authenticatable
         $this->user_worker()->detach($user->id);
     }
 
+
+
     public function createSubProduct()
     {
         return $this->hasMany(\App\SubProduct::class, 'created_by', 'id');
@@ -117,6 +119,16 @@ class User extends Authenticatable
     public function updatedSubProduct()
     {
         return $this->hasMany(\App\SubProduct::class, 'updated_by', 'id');
+    }
+
+    public function createProduct()
+    {
+        return $this->hasMany(\App\Product::class, 'created_by', 'id');
+    }
+
+    public function updatedProduct()
+    {
+        return $this->hasMany(\App\Product::class, 'updated_by', 'id');
     }
 
 }

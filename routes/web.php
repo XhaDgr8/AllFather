@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/test/{p}/{s}', function ($p,$s){
+
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -56,8 +60,16 @@ Route::middleware('auth')->group(function(){
     Route::post('/fileUpload/{user}', 'fileSystemController@fileUpload');
     Route::get('/avatar/{user}/{avatar}', 'fileSystemController@avatar');
     Route::get('/subProductImage/{user}/{avatar}', 'fileSystemController@subProductImage');
+    Route::get('/productImage/{user}/{avatar}', 'fileSystemController@productImage');
     Route::post('/deleteFile/{user}/{img}', 'fileSystemController@deleteFile');
 
+    Route::resource('product', 'ProductController');
+    // Attach SubProduct To Product
+    Route::post('/attachToProduct/{product}/{subProduct}', 'ProductController@attachToProduct');
+    Route::post('/detachFromProduct/{product}/{subProduct}', 'ProductController@detachFromProduct');
+    Route::post('/productsSubProducts/{product}', 'ProductController@productsSubProducts');
+    Route::post('/getQuantity/{product}/{subProduct}', 'ProductController@getQuantity');
+    Route::post('/changeQuantity/{product}/{subProduct}/{quantity}', 'ProductController@changeQuantity');
 
     Route::middleware('can:admin')->group(function(){
 
@@ -90,3 +102,5 @@ Route::middleware('auth')->group(function(){
     });
 
 });
+
+
