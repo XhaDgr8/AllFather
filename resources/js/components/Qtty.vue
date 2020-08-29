@@ -37,6 +37,7 @@ export default {
             axios.post('/changeQuantity/'+this.productid+'/'+this.subproductid+'/'+this.newQuantity)
                 .then(response => {
                     this.quantity = response.data;
+                    Event.$emit('fromProduct');
                     this.$toastr.s("Quantity Updated Successfully to " + response.data);
                 });
         }

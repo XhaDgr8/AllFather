@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,14 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cat_number', 400)->nullable();
-            $table->string('name', 400)->nullable();
             $table->longText('description')->nullable();
-            $table->integer('stock_quantity')->nullable();
-            $table->integer('price_for_customer')->nullable();
-            $table->integer('price_for_admin')->nullable();
-            $table->integer('other_costs')->nullable();
-            $table->longText('image')->nullable();
-            $table->longText('image_alt')->nullable();
-            $table->string('category', 400)->nullable();
-            $table->string('key_words', 400)->nullable();
+            $table->string('shipping_address')->nullable();
+            $table->string('token')->nullable();
+            $table->string('status')->nullable();
+            $table->string('payment_gateway')->default('stripe');
+            $table->string('error')->nullable();
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
@@ -50,6 +45,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('orders');
     }
 }

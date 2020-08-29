@@ -84,7 +84,16 @@ class sidebar extends Component
                 'roles' => [
                     'worker'
                 ]
-            ]
+            ],
+            [
+                'active' => $this->active, 'id' => 'orders',
+                'name' => 'All Orders', 'icon' => 'stayLinked',
+                'url' => '/order',
+                'sub' => [],
+                'roles' => [
+                    'admin', 'worker', 'customer'
+                ]
+            ],
         ];
     }
 

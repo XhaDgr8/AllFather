@@ -5,7 +5,9 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <x-icon i="github" class="text-dark" h="1.3rem" w="1.3rem"/>
+                    <a href="{{route('order.create')}}" class="btn btn-link btn-outline-primary shadow-sm">
+                        <x-icon i="github" class="text-dark" h="1.3rem" w="1.3rem"/>
+                    </a>
                 </li>
             </ul>
 

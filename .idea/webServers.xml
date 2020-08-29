@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="938f043b-56af-480d-8632-5e26fbd8938a" name="ftp.perfuniq.company" url="http://ftp.perfuniq.company">
+        <fileTransfer rootFolder="/laravel" host="ftp.perfuniq.company" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

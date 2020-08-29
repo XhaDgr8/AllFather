@@ -18,11 +18,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/test/{p}/{s}', function ($p,$s){
+Route::get('/removeFromOrder/{id}', function ($id){
+    foreach (session("product.id") as $key => $ses){
+        if ($ses == $id){
+            session()->pull('product.id.'.$key);
+        }
+    }
+    return back();
+});
 
+Route::get('/addToOrder/{id}', function ($id){
+    if (session()->has('product.id')){
+        if ( in_array($id, session('product.id')) ){
+            session()->flash('product.error', "The Product is already added to order");
+        } else {
+            session()->push('product.id', $id);
+        };
+    } else {
+        session()->push('product.id', $id);
+    }
+    return back();
 });
 
 Route::get('/', function () {
+    session()->put('products.id', []);
     return view('welcome');
 });
 
@@ -32,6 +51,8 @@ Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::middleware('auth')->group(function(){
+    Route::resource('order', 'OrderController');
+
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/pView', 'ProfileController@pView')->name('customers.pView');
@@ -102,5 +123,7 @@ Route::middleware('auth')->group(function(){
     });
 
 });
+
+
 
 

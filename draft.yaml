@@ -1,24 +1,17 @@
-#models:
-#  Product:
-#    created_by: id foreign:user nullable
-#    updated_by: id foreign:user nullable
-#    cat_number: string:400 nullable
-#    name: string:400 nullable
-#    description: longText nullable
-#    stock_quantity: integer nullable
-#    price_for_customer: integer nullable
-#    price_for_admin: integer nullable
-#    other_costs: integer nullable
-#    image: longText nullable
-#    image_alt: longText nullable
-#    category: string:400 nullable
-#    key_words: string:400 nullable
-#    relationships:
-#      hasOne: User
-#      hasMany: User
-#
-#controllers:
-#  Product:
-#    resource
-#
-#seeders: Product
+models:
+  Order:
+    description: longText nullable
+    shiping_address: string nullable
+    token: string nullable
+    status: string nullable
+    created_by: id foreign:users nullable
+    updated_by: id foregin:users nullable
+    relationships:
+      hasOne: User
+      belongsToMany: Product
+
+controllers:
+  Order:
+    resource
+
+seeders: Order

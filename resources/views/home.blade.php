@@ -1,8 +1,9 @@
+
 @extends('layouts.contentLayoutMaster')
 
 @section('page-vars')
     @php
-        $active = "";$subActive = '';
+        $active = ""; $subActive = '';
         $title = "Welcome Home";
         $bread = [];
     @endphp
@@ -84,20 +85,22 @@
                     </h1>
                 </div>
                 <ul class="list-group list-group-flush" style="max-height: 15rem;overflow-y: scroll">
-                    @foreach($products as $product)
-                        <li class="list-group-item">
-                            <div class="d-inline">
-                                <x-avatar class="shadow-sm mr-2" :for="$product->image" radius="100%" w="2.5rem" h="2.5rem"/>
-                            </div>
-                            <div class="d-inline">{{ $product->name }}</div>
-                            <div class="d-inline float-right">
-                                <a href="/product/{{$product->id}}" class="btn btn-link text-decoration-none
+                    @if(count($products) > 0)
+                        @foreach($products as $product)
+                            <li class="list-group-item">
+                                <div class="d-inline">
+                                    <x-avatar class="shadow-sm mr-2" :for="$product->image" radius="100%" w="2.5rem" h="2.5rem"/>
+                                </div>
+                                <div class="d-inline">{{ $product->name }}</div>
+                                <div class="d-inline float-right">
+                                    <a href="/product/{{$product->id}}" class="btn btn-link text-decoration-none
                                 btn-primary rounded-lg shadow-sm-primary">
-                                    <x-icon i="eye" class="m-0 p-0" h="1.5rem" w="1.5rem"/>
-                                </a>
-                            </div>
-                        </li>
-                    @endforeach
+                                        <x-icon i="eye" class="m-0 p-0" h="1.5rem" w="1.5rem"/>
+                                    </a>
+                                </div>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         </div>

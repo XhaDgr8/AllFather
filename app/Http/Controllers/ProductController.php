@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Product::paginate(25);
 
         return view('pages.product.index', compact('products'));
     }
@@ -38,11 +38,9 @@ class ProductController extends Controller
     {
         $product = Product::create($request->validated());
 
-        $request->session()->flash('product.created', $product->name. " Created Successfully Know lets Add Sub Products");
+        $request->session()->flash('product.created', $product->name. " Created Successfully");
 
-        $subProducts = SubProduct::all();
-
-        return view('pages.product.edit', compact('product', 'subProducts'));
+        return redirect('/product');
     }
 
     /**
@@ -123,7 +121,8 @@ class ProductController extends Controller
         $product->subProducts()
             ->where('sub_product_id', $subProduct->id)
             ->firstOrFail()->pivot->update(["quantity" => $quantity]);
-        $nqty = $subProduct->stock_quantity - $quantity;
+        $neg = $quantity * $product->stock_quantity;
+        $nqty = $subProduct->stock_quantity - $neg;
         $subProduct->update(['stock_quantity' => $nqty]);
         return $product->qtty($subProduct->id);
     }

@@ -8,14 +8,14 @@
         $fields = [
             'cat_number' => 'Cat Number',
             'name' => 'Name',
-            'stock_quantity' => 'stock_Quantity',
+            //'stock_quantity' => 'stock_Quantity',
             'price_for_customer' => 'Price For Customer',
             'price_for_admin' => 'Price For Admin',
             'other_costs' => 'Other Costs',
             'category' => 'Category',
             'key_words' => 'Key Word',
             'description' => 'Description',
-            ];
+        ];
     @endphp
 @endsection
 @section('content')

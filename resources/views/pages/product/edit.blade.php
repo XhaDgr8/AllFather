@@ -163,62 +163,62 @@
                     <div style="max-height: 25rem; overflow-y: scroll">
                         @foreach($subProducts as $subProduct)
                             <div class="row w-100 mx-auto rounded-lg p-2 shadow-md mb-3">
-                            <div class="col-4">
-                                <x-sub-product-avatar class="shadow-sm"
-                                                      :alt="$subProduct->name" :for="$subProduct->image"
-                                                      radius="10%" w="8rem" h="8rem"/>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <h4>{{ $subProduct->name }}</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <attach-to-product :productid="{{$product->id}}" :subproductid="{{$subProduct->id}}"/>
-                                    </div>
-                                    <div class="col-6">
-                                        <p>
-                                            <strong>Cat No: </strong>
-                                            <span class="text-muted">{{ $subProduct->cat_number }}</span>
-                                        </p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p>
-                                            <strong>Category: </strong>
-                                            <span class="text-muted">{{ $subProduct->category }}</span>
-                                        </p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p>
-                                            <strong>In Stock:
-                                                <span class="text-success">{{ $subProduct->stock_quantity }}</span>
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p>
-                                            <strong>Price Per Unit:
-                                                <span class="text-success">{{ $subProduct->price_per_unit }}</span>
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p>
-                                            <strong>Buying Unit:
-                                                <span class="text-info">{{ $subProduct->buying_unit }}</span>
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p>
-                                            <strong>Production Unit:
-                                                <span class="text-info">{{ $subProduct->production_unit }}</span>
-                                            </strong>
-                                        </p>
+                                <div class="col-4">
+                                    <x-sub-product-avatar class="shadow-sm"
+                                                          :alt="$subProduct->name" :for="$subProduct->image"
+                                                          radius="10%" w="8rem" h="8rem"/>
+                                </div>
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h4>{{ $subProduct->name }}</h4>
+                                        </div>
+                                        <div class="col-4">
+                                            <attach-to-product :productid="{{$product->id}}" :subproductid="{{$subProduct->id}}"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>
+                                                <strong>Cat No: </strong>
+                                                <span class="text-muted">{{ $subProduct->cat_number }}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>
+                                                <strong>Category: </strong>
+                                                <span class="text-muted">{{ $subProduct->category }}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>
+                                                <strong>In Stock:
+                                                    <span class="text-success">{{ $subProduct->stock_quantity }}</span>
+                                                </strong>
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>
+                                                <strong>Price Per Unit:
+                                                    <span class="text-success">{{ $subProduct->price_per_unit }}</span>
+                                                </strong>
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>
+                                                <strong>Buying Unit:
+                                                    <span class="text-info">{{ $subProduct->buying_unit }}</span>
+                                                </strong>
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>
+                                                <strong>Production Unit:
+                                                    <span class="text-info">{{ $subProduct->production_unit }}</span>
+                                                </strong>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

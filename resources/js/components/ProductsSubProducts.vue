@@ -4,9 +4,9 @@
              class="col-12 rounded-lg my-3 p-2 shadow-sm-primary">
             <div class="row ">
                 <div class="col-3 p-2">
-                    <img v-if="subProduct['image'] != null" :src="`${assets}/${subProduct['image']}`"
+                    <img v-if="subProduct['image'] != ''" :src="`${assets}/${subProduct['image']}`"
                          class="m-0 p-0 rounded-lg" style="vertical-align: middle;width: 8rem;height: 8rem;">
-                    <img v-else-if="subProduct['image'] === null"
+                    <img v-else-if="subProduct['image'] == ''"
                          :src="assetselse"
                          class="m-0 p-0 rounded-lg" style="vertical-align: middle;width: 8rem;height: 8rem;">
                 </div>
@@ -62,7 +62,7 @@
                             <div class="row">
                                 <div class="col-auto">
                                     <button type="button" @click="detachFromProduct(subProduct['id'])"
-                                       class="btn btn-link text-decoration-none btn-outline-danger rounded-lg shadow-sm">
+                                            class="btn btn-link text-decoration-none btn-outline-danger rounded-lg shadow-sm">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg" class="color-danger"
                                             width="1.5rem" height="1.5rem" focusable="false" role="img"

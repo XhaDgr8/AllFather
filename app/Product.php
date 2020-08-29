@@ -55,6 +55,37 @@ class Product extends Model
         )->withPivot('quantity');
     }
 
+    public function orders ()
+    {
+        return $this->belongsToMany(
+            Order::class, 'order_product', 'product_id', 'order_id'
+        )->withPivot('quantity');
+    }
+
+    public function attachedToOrder($order_id)
+    {
+        $this->orders()->sync($order_id, false);
+    }
+
+    public function orderQuantity($order_id)
+    {
+        return $this->orders()
+            ->where('order_id', $order_id)
+            ->firstOrFail()->pivot->quantity;
+    }
+
+    public function addOrderQuantity($order_id, $quantity)
+    {
+        return $this->orders()
+            ->where('order_id', $order_id)
+            ->firstOrFail()->pivot->update(['quantity' => $quantity]);
+    }
+
+//    public function price_per_unit()
+//    {
+//        return 'null';
+//    }
+
     public function qtty($subProductId)
     {
         return $this->subProducts()

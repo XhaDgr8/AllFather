@@ -14,7 +14,7 @@ class CreateSubProductsTable extends Migration
     public function up()
     {
         Schema::create('sub_products', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('cat_number', 400)->nullable();
             $table->string('name', 400)->nullable();
             $table->longText('description')->nullable();

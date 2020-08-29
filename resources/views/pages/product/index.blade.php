@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         {{-- Users Table --}}
-        <h1 class="text-center">Customers Management</h1>
+        <h1 class="text-center">Products Management</h1>
         <p class="text-center text-primary">
             Here You can see how is assigned to which user.
         </p>
@@ -51,6 +51,9 @@
                     </div>
                 </div>
             @endforeach
+            <div class="col-12 my-5 d-flex flex-row justify-content-center">
+                {{$products->links()}}
+            </div>
         </div>
 
     </div>

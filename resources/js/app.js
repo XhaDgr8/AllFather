@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import Qtty from "./components/Qtty";
+
 require('./bootstrap');
 require('./custome');
 window.Vue = require('vue');
@@ -20,14 +22,22 @@ Vue.component('file-system', require('./components/FileSystem.vue').default);
 Vue.component('avatar-profile', require('./components/Avatar.vue').default);
 Vue.component('sub-product-image', require('./components/SubProductImage.vue').default);
 Vue.component('products-sub-products', require('./components/ProductsSubProducts.vue').default);
-
 const app = new Vue({
     el: '#app',
     data() {
         return {
             active: false,
+            pQty: [],
+            ele: ''
         }
     },
+    methods: {
+        productQtty(id){
+            $("#"+id).keyup(function (){
+                console.log(id);
+            });
+        }
+    }
 });
 
 

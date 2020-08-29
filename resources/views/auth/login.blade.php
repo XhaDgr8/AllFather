@@ -90,22 +90,26 @@
 
                         <div class="separator my-4">OR</div>
 
-                        <div class="my-3 row g-1">
-                            <div class="col-md-3 col-6">
-                                <x-social-logins icon="github-alt-brands.svg" url="github"
-                                                 bgColor="#24282E" w="2rem" h="2rem" alt="Login to Perfumers with github"/>
+                        <div class="my-3 row">
+                            <div class="col-3">
+                                <a href="login/github" class="btn btn-link btn-dark shadow-sm-primary">
+                                    <x-icon i="github" class="text-white" h="2.3rem" w="2.3rem"/>
+                                </a>
                             </div>
-                            <div class="col-md-3 col-6">
-                                <x-social-logins icon="facebook-f-brands.svg" url="facebook"
-                                                 bgColor="#4285F4" w="2rem" h="2rem" alt="Login to Perfumers with facebook"/>
+                            <div class="col-3">
+                                <a href="login/facebook" style="background-color: #4285F4" class="btn btn-link shadow-sm-primary">
+                                    <x-icon i="facebook" class="text-white" h="2.3rem" w="2.3rem"/>
+                                </a>
                             </div>
-                            <div class="col-md-3 col-6">
-                                <x-social-logins icon="google-brands.svg" url="google"
-                                                 bgColor="#d34836" w="2rem" h="2rem" alt="Login to Perfumers with google"/>
+                            <div class="col-3">
+                                <a href="login/google" style="background-color: #d34836" class="btn btn-link shadow-sm-primary">
+                                    <x-icon i="google" class="text-white" h="2.3rem" w="2.3rem"/>
+                                </a>
                             </div>
-                            <div class="col-md-3 col-6">
-                                <x-social-logins icon="twitter-brands.svg" url="google"
-                                                 bgColor="#00acee" w="2rem" h="2rem" alt="Login to Perfumers with twitter"/>
+                            <div class="col-3">
+                                <a href="login/twitter" disabled style="background-color: #00acee" class="btn btn-link shadow-sm-primary">
+                                    <x-icon i="twitter" class="text-white" h="2.3rem" w="2.3rem"/>
+                                </a>
                             </div>
                         </div>
                     </div>

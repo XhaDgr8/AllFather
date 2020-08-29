@@ -40,6 +40,22 @@
                     </div>
                 </div>
             @endcan
+            @if (session()->has('product.error'))
+                <div class="container px-3">
+                    <div class="col-12 alert alert-danger">
+                        {{session('product.error')}}
+                    </div>
+                </div>
+            @endif
+            @if (session()->has('product.id'))
+                @if(in_array($product->id, session('product.id')))
+                    <div class="container px-3">
+                        <div class="col-12 alert alert-success">
+                            {{$product->name}} added to Order successfully
+                        </div>
+                    </div>
+                @endif
+            @endif
             <div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
                 <div class="d-flex align-items-center justify-content-center pl-3">
                     <x-sub-product-avatar class="shadow-md rounded-lg" :alt="$product->name" :for="$product->image" radius="" w="100%" h="100%"/>
@@ -81,9 +97,9 @@
 
                         <div class="row mt-2">
                             <div class="col-6">
-                                <button type="button" class="btn btn-lg btn-primary shadow-md-primary">
+                                <a href="/addToOrder/{{$product->id}}" type="button" class="btn btn-lg btn-primary shadow-md-primary">
                                     <x-icon i="dotCircle" class="m-0 mb-1 p-0" h="1rem" w="1rem"/> Add To Orders
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

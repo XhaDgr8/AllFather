@@ -53,27 +53,23 @@
 
                             <div class="my-3 row">
                                 <div class="col-3">
-                                    <a href="login/github" class="btn btn-link shadow-md btn-dark">
-                                        <img src="{{asset('storage/sa/icons/github-alt-brands.svg')}}"
-                                             class="img-fluid" style="width: 2rem; height: 2rem" alt="">
+                                    <a href="login/github" class="btn btn-link btn-dark shadow-sm-primary">
+                                        <x-icon i="github" class="text-white" h="2.3rem" w="2.3rem"/>
                                     </a>
                                 </div>
                                 <div class="col-3">
-                                    <a href="login/facebook" style="background-color: #4285F4" class="btn btn-link shadow-sm">
-                                        <img src="{{asset('storage/sa/icons/facebook-f-brands.svg')}}"
-                                             class="img-fluid px-2" style="width: 2rem; height: 2rem" alt="">
+                                    <a href="login/facebook" style="background-color: #4285F4" class="btn btn-link shadow-sm-primary">
+                                        <x-icon i="facebook" class="text-white" h="2.3rem" w="2.3rem"/>
                                     </a>
                                 </div>
                                 <div class="col-3">
-                                    <a href="login/google" style="background-color: #d34836" class="btn btn-link shadow-sm">
-                                        <img src="{{asset('storage/sa/icons/google-brands.svg')}}"
-                                             class="img-fluid" style="width: 2rem; height: 2rem" alt="">
+                                    <a href="login/google" style="background-color: #d34836" class="btn btn-link shadow-sm-primary">
+                                        <x-icon i="google" class="text-white" h="2.3rem" w="2.3rem"/>
                                     </a>
                                 </div>
                                 <div class="col-3">
-                                    <a href="login/google" style="background-color: #00acee" class="btn btn-link shadow-sm">
-                                        <img src="{{asset('storage/sa/icons/twitter-brands.svg')}}"
-                                             class="img-fluid" style="width: 2rem; height: 2rem" alt="">
+                                    <a href="login/twitter" disabled style="background-color: #00acee" class="btn btn-link shadow-sm-primary">
+                                        <x-icon i="twitter" class="text-white" h="2.3rem" w="2.3rem"/>
                                     </a>
                                 </div>
                             </div>
