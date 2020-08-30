@@ -29,7 +29,7 @@
                                                    type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                             <label class="form-check-label" for="remember">
-                                                {{ __('I accept the terms & conditions.') }}
+                                                {{ __('Keep me logged In.') }}
                                             </label>
                                         </div>
                                     </div>

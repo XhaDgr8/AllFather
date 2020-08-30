@@ -102,7 +102,9 @@
                 @endforeach
             </div>
             <div class="col fadeInUp">
-                <div class="container border-0 rounded-lg p-0 overflow-hidden shadow-md my-4">
+
+                @can('c_order_customers')
+                    <div class="container border-0 rounded-lg p-0 overflow-hidden shadow-md my-4">
                     <div class="card-header py-4 position-relative"
                          style="background-image: url('{{asset("storage/sa/subProducts.jpg")}}');
                              background-size: cover;
@@ -128,8 +130,9 @@
                             </li>
                         @endforeach
                     </ul>
-                    <input type="hidden" id="customer" name="created_by" value="{{auth()->user()->id}}">
                 </div>
+                @endcan
+
                 <div class="container bg-white shadow-md py-3 border-primary rounded-lg">
                     <h5 class="text-muted">Order Details</h5>
                     <div class="separator my-3"></div>
@@ -152,7 +155,7 @@
                     <h4 class="text-success mb-3">
                         Total Price: $<span id="totalPrice"></span>
                     </h4>
-
+                    <input type="hidden" id="customer" name="created_by" value="{{auth()->user()->id}}">
                     <button class="btn btn-block border-0 btn-primary shadow-md-primary rounded-lg">
                         Place Order
                     </button>

@@ -32,20 +32,19 @@
             <div class="container">
                 @if(auth()->user()->is_role('admin'))
                     @foreach($menus as $menu)
-                        <x-menue-items :menu="$menu" :subs="$menu['sub']"/>
+                        <x-menu-items :menu="$menu" :subs="$menu['sub']"/>
                     @endforeach
                 @else
-                    @if(auth()->user()->is_role('worker'))
-                        @foreach($menus as $menu)
-                            @if(in_array('worker', $menu['roles']))
-                                <x-menue-items :menu="$menu" :subs="$menu['sub']"/>
-                            @endif
-                        @endforeach
-                    @endif
                     @if(auth()->user()->is_role('customer'))
                         @foreach($menus as $menu)
                             @if(in_array('customer', $menu['roles']))
-                                <x-menue-items :menu="$menu" :subs="$menu['sub']"/>
+                                <x-menu-items :menu="$menu" :subs="$menu['sub']"/>
+                            @endif
+                        @endforeach
+                        @else
+                        @foreach($menus as $menu)
+                            @if(in_array('worker', $menu['roles']))
+                                <x-menu-items :menu="$menu" :subs="$menu['sub']"/>
                             @endif
                         @endforeach
                     @endif

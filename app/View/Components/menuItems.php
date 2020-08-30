@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class menueItems extends Component
+class menuItems extends Component
 {
     public $subs;
     public $menu;

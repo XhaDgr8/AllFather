@@ -20,7 +20,7 @@ class ProductsSubProducts extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('sub_product_id');
 
-            $table->integer('quantity')->default(1)->nullable();
+            $table->decimal('quantity',  9, 3)->default(1)->nullable();
             $table->timestamps();
 
             $table->foreign('sub_product_id')

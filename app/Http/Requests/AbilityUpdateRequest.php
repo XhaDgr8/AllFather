@@ -24,7 +24,7 @@ class AbilityUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'name' => 'nullable|string',
             'label' => 'string',
         ];
     }

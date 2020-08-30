@@ -88,6 +88,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request, $profile)
     {
+        $this->authorize('u_users');
 
         $user = User::findOrFail($profile);
         $profile = $user->profile;

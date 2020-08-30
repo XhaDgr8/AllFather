@@ -12,6 +12,7 @@
 @section('content')
     <div class="container">
         {{-- Only For Admin Use--}}
+        <div class="container my-5"><a href="/makeDefaults" class="btn btn-outline-primary btn-block shadow">Reset To Defaults</a></div>
         <div class="row shadow-md border py-3 rounded-lg bg-white border-primary">
             <div class="col-12"><h4 class="text-center">Ability Management</h4></div>
             <div class="col-md-6">
@@ -25,8 +26,9 @@
                             </div>
                         @endif
                         <div class="row border border-primary py-2 mb-2">
+{{--                            <div class="col">Name</div>--}}
+                            <div class="col-auto">Id</div>
                             <div class="col">Name</div>
-                            <div class="col">Label</div>
                             <div class="col-4">Actions</div>
                         </div>
                         @foreach($abilities as $ability)
@@ -34,8 +36,11 @@
                                 <form method="post" action="ability/{{$ability->id}}" class="col-10">
                                     @csrf @method('PATCH')
                                     <div class="row">
-                                        <div class="col">
-                                            <x-text-input attr="required" name="name" type="text" class="" :label="$ability->name" value="" />
+{{--                                        <div class="col">--}}
+{{--                                            <x-text-input attr="required" name="name" type="text" class="" :label="$ability->name" value="" />--}}
+{{--                                        </div>--}}
+                                        <div class="col-auto">
+                                            {{$ability->id}}
                                         </div>
                                         <div class="col">
                                             <x-text-input attr="required" name="label" type="text" class="" :label="$ability->label" value="" />
@@ -206,24 +211,15 @@
                 </div>
                 <div class="container-fluid">
                     <div class="row text-center shadow-sm border text-info font-weight-bold py-3">
-                        <div class="col-2">#</div>
-                        <div class="col-3">Role Name</div>
-                        <div class="col-4">Have The Abilities</div>
-                        <div class="col-3">Assign Ability to Role</div>
+                        <div class="col">#</div>
+                        <div class="col">Role Name</div>
+                        <div class="col">Assign Ability to Role</div>
                     </div>
                     @foreach($roles as $role)
-                        <div class="row text-center shadow-sm border pt-2">
-                            <div class="col-2">{{ $role->id }}</div>
-                            <div class="col-3">{{ $role->label }}</div>
-                            <div class="col-4">
-                                <x-assigner
-                                    :assigner="[
-                                            'for' => $role, 'to' => $role->abilities, 'route' => 'detach.ability.from.role',
-                                            'forName' => 'role', 'toName' => 'detach_ability'
-                                        ]" class=""
-                                />
-                            </div>
-                            <div class="col-3">
+                        <div class="row text-center my-3 shadow-sm border pt-2">
+                            <div class="col">{{ $role->id }}</div>
+                            <div class="col"><h4 class="text-primary">{{ $role->label }}</h4></div>
+                            <div class="col">
                                 <form class="mb-1 d-flex flex-row justify-content-center" action="/role/assignAbility" method="post">
                                     @csrf
 
@@ -239,6 +235,15 @@
                                     </button>
 
                                 </form>
+                            </div>
+                            <div class="col-12">
+                                <div class="col-4 my-2"><h4 class="text-center text-info">Have The Abilities</h4></div>
+                                <x-assigner
+                                    :assigner="[
+                                            'for' => $role, 'to' => $role->abilities, 'route' => 'detach.ability.from.role',
+                                            'forName' => 'role', 'toName' => 'detach_ability'
+                                        ]" class=""
+                                />
                             </div>
                         </div>
                     @endforeach

@@ -35,6 +35,15 @@ class sidebar extends Component
     {
         return [
             [
+                'active' => $this->active, 'id' => 'home',
+                'name' => 'Home', 'icon' => 'home',
+                'url' => '/home',
+                'sub' => [],
+                'roles' => [
+                    'admin', 'worker', 'customer'
+                ]
+            ],
+            [
                 'active' => $this->active, 'id' => 'ability_role',
                 'name' => 'Roles & Abilities', 'icon' => 'stayLinked',
                 'url' => '/ability_role',
@@ -45,13 +54,13 @@ class sidebar extends Component
             ],
             [
                 "url" => "#",
-                "name" => "Customers",
+                "name" => "Users",
                 "id" => "customers",
                 "icon" => "userCog",
                 "active" => $this->active,
                 'sub' => [
-                    ["url" => "/customer/create", "name" => "Create Customer", "id" => 'customer_create', 'active' => $this->subActive],
-                    ["url" => "/customer/all", "name" => "All Customers", "id" => 'customer_all', 'active' => $this->subActive]
+                    ["url" => "/customer/create", "name" => "Create User", "id" => 'customer_create', 'active' => $this->subActive],
+                    ["url" => "/customer/all", "name" => "All Users", "id" => 'customer_all', 'active' => $this->subActive]
                 ],
                 'roles' => [
                     'worker'
@@ -61,7 +70,7 @@ class sidebar extends Component
                 "url" => "#",
                 "name" => "Sub Products",
                 "id" => "sub_products",
-                "icon" => "plus",
+                "icon" => "product",
                 "active" => $this->active,
                 'sub' => [
                     ["url" => "/sub-product/create", "name" => "Create SubProducts", "id" => 'sub_products_create', 'active' => $this->subActive],
@@ -75,7 +84,7 @@ class sidebar extends Component
                 "url" => "#",
                 "name" => "Products",
                 "id" => "products",
-                "icon" => "plus",
+                "icon" => "productHunt",
                 "active" => $this->active,
                 'sub' => [
                     ["url" => "/product/create", "name" => "Create Products", "id" => 'products_create', 'active' => $this->subActive],
@@ -87,7 +96,7 @@ class sidebar extends Component
             ],
             [
                 'active' => $this->active, 'id' => 'orders',
-                'name' => 'All Orders', 'icon' => 'stayLinked',
+                'name' => 'All Orders', 'icon' => 'cart',
                 'url' => '/order',
                 'sub' => [],
                 'roles' => [

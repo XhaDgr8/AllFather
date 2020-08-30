@@ -5091,7 +5091,7 @@ var render = function() {
           staticClass: "form-control border-primary border",
           attrs: {
             id: _vm.subproductid,
-            type: "number",
+            type: "numeric",
             placeholder: "auto",
             required: ""
           },
@@ -18604,6 +18604,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
+  $("[type='number']").scroll(function (evt) {
+    evt.preventDefault();
+  });
   $('.hovered').hover(function () {
     $(this).toggleClass('pl-4');
   });

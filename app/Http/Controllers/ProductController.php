@@ -16,6 +16,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('v_product');
         $products = Product::paginate(25);
 
         return view('pages.product.index', compact('products'));
@@ -27,6 +28,7 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
+        $this->authorize('c_product');
         return view('pages.product.create');
     }
 
@@ -36,6 +38,7 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
+        $this->authorize('c_product');
         $product = Product::create($request->validated());
 
         $request->session()->flash('product.created', $product->name. " Created Successfully");
@@ -50,6 +53,7 @@ class ProductController extends Controller
      */
     public function show(Request $request, Product $product)
     {
+        $this->authorize('v_product');
         $subProducts = $product->subProducts;
         return view('pages.product.show', compact('product', 'subProducts'));
     }
@@ -61,6 +65,7 @@ class ProductController extends Controller
      */
     public function edit(Request $request, Product $product)
     {
+        $this->authorize('u_product');
         $subProducts = SubProduct::all();
 
         return view('pages.product.edit', compact('product', 'subProducts'));
@@ -73,6 +78,7 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, Product $product)
     {
+        $this->authorize('u_product');
         $product->update($request->validated());
 
         $request->session()->flash('product.updated', $product->name. " Updated Successfully");
@@ -87,6 +93,7 @@ class ProductController extends Controller
      */
     public function destroy(Request $request, Product $product)
     {
+        $this->authorize('d_product');
         $product->delete();
 
         return redirect()->route('product.index');
@@ -94,12 +101,14 @@ class ProductController extends Controller
 
     public function attachToProduct(Product $product,SubProduct $subProduct)
     {
+        $this->authorize('u_product');
         $product->attachedToProduct($subProduct->id);
         return $subProduct->name. ' Added to '. $product->name;
     }
 
     public function detachFromProduct(Product $product,SubProduct $subProduct)
     {
+        $this->authorize('u_product');
         $product->detachedFromProduct($subProduct->id);
         return $subProduct->name. ' Removed From '. $product->name;
     }

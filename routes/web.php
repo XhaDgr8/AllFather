@@ -6,6 +6,8 @@ use App\User;
 use http\Client\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/test', function () {
+    echo Str::kebab('assigner');
+    echo Blade::component('components.menueitems');
+});
+
+Route::get('/makeDefaults', 'AssignmentController@resetDefaults');
 
 Route::get('/removeFromOrder/{id}', function ($id){
     foreach (session("product.id") as $key => $ses){
@@ -41,11 +50,10 @@ Route::get('/addToOrder/{id}', function ($id){
 });
 
 Route::get('/', function () {
+//    session()->flush();
     session()->put('products.id', []);
     return view('welcome');
 });
-
-Auth::routes();
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
@@ -92,38 +100,36 @@ Route::middleware('auth')->group(function(){
     Route::post('/getQuantity/{product}/{subProduct}', 'ProductController@getQuantity');
     Route::post('/changeQuantity/{product}/{subProduct}/{quantity}', 'ProductController@changeQuantity');
 
-    Route::middleware('can:admin')->group(function(){
 
-        Route::resource('role', 'RoleController');
-        Route::resource('ability', 'AbilityController');
+    Route::resource('role', 'RoleController');
+    Route::resource('ability', 'AbilityController');
 
-        // Assign Workers to Customers
-        Route::post('/assignWorker', 'AssignmentController@assignWorker')
-            ->name('assign.worker.to.customer');
-        Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')
-            ->name('unAssign.worker.to.customer');
+    // Assign Workers to Customers
+    Route::post('/assignWorker', 'AssignmentController@assignWorker')
+        ->name('assign.worker.to.customer');
+    Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')
+        ->name('unAssign.worker.to.customer');
 
-        Route::get('/ability_role', 'AssignmentController@index')->name('ability.role');
+    Route::get('/ability_role', 'AssignmentController@index')->name('ability.role');
 
-        // Assign Roles to Users
-        Route::post('/user/assignRole', 'AssignmentController@storeRole')
-            ->name('assign.role.to.user');
+    // Assign Roles to Users
+    Route::post('/user/assignRole', 'AssignmentController@storeRole')
+        ->name('assign.role.to.user');
 
-        // Detach Roles From Users
-        Route::post('/user/detachRole', 'AssignmentController@detachRoleFromUser')
-            ->name('detach.role.from.user');
+    // Detach Roles From Users
+    Route::post('/user/detachRole', 'AssignmentController@detachRoleFromUser')
+        ->name('detach.role.from.user');
 
-        // Assign to Ability To Roles
-        Route::post('/role/assignAbility', 'AssignmentController@storeAbility')
-            ->name('assign.ability.to.role');
+    // Assign to Ability To Roles
+    Route::post('/role/assignAbility', 'AssignmentController@storeAbility')
+        ->name('assign.ability.to.role');
 
-        // Remove to Ability From Roles
-        Route::post('/role/detachAbility', 'AssignmentController@detachAbilityFromRole')
-            ->name('detach.ability.from.role');
-    });
+    // Remove to Ability From Roles
+    Route::post('/role/detachAbility', 'AssignmentController@detachAbilityFromRole')
+        ->name('detach.ability.from.role');
 
 });
 
-
+Auth::routes();
 
 

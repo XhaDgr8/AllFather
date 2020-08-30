@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('cat_number', 400)->nullable();
             $table->string('name', 400)->nullable();
             $table->longText('description')->nullable();
-            $table->integer('stock_quantity')->nullable();
+            $table->decimal('stock_quantity',  9, 3)->nullable();
             $table->integer('price_for_customer')->nullable();
             $table->integer('price_for_admin')->nullable();
             $table->integer('other_costs')->nullable();

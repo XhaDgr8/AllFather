@@ -6,7 +6,12 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a href="{{route('order.create')}}" class="btn btn-link btn-outline-primary shadow-sm">
-                        <x-icon i="github" class="text-dark" h="1.3rem" w="1.3rem"/>
+                        <x-icon i="cart" class="" h="1.3rem" w="1.3rem"/>
+                        @if(session()->has('product.id'))
+                            @if(count(session('product.id')) > 0 )
+                                <span class="badge ml-2 bg-secondary">{{count(session('product.id'))}}</span>
+                            @endif
+                        @endif
                     </a>
                 </li>
             </ul>

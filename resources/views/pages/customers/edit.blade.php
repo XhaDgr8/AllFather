@@ -34,19 +34,22 @@
                         </p>
                     </div>
                 </div>
-                <div class="bg-dark p-2 mt-5">
-                    <p class="text-danger">Remember Deleting The Customer Means that you Delete everything Related to this Customer</p>
-                    <form action="/customer/{{$profile->user->id}}" class="my-3" method="POST">
-                        @csrf @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-lg shadow-sm">
-                            <x-icon i="trash" class="m-0 p-0" h=".6rem" w=".6rem"/> Delete Customer
-                        </button>
-                    </form>
-                </div>
+                @can('d_users')
+                    <div class="bg-dark p-2 mt-5">
+                        <p class="text-danger">Remember Deleting The Customer Means that you Delete everything Related to this Customer</p>
+                        <form action="/customer/{{$profile->user->id}}" class="my-3" method="POST">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-lg shadow-sm">
+                                <x-icon i="trash" class="m-0 p-0" h=".6rem" w=".6rem"/> Delete Customer
+                            </button>
+                        </form>
+                    </div>
+                @endcan
             </div>
             <div class="col">
                 <div class="col-12">
                     <div class="row">
+                        @can('attach_role')
                         <div class="col-6">
                             <h5 class="">Assign a Role to this Customer</h5>
                             <form class="mb-1 d-flex flex-row justify-content-center"
@@ -65,6 +68,8 @@
                                 </button>
                             </form>
                         </div>
+                        @endcan
+                        @can('attach_worker')
                         <div class="col-6">
                             <h5 class="">Assign a Worker to this Customer</h5>
                             <form class="mb-1 d-flex flex-row justify-content-around"
@@ -83,6 +88,8 @@
                                 </button>
                             </form>
                         </div>
+                        @endcan
+
                     </div>
                 </div>
                 <form method="post" action="/customers/{{$profile->user->id}}">

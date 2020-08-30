@@ -9,7 +9,7 @@
         <div class="form-group">
             <fieldset class="w-100 position-relative">
                 <input v-on:change="changeQuantity" v-model="newQuantity" :id="subproductid"
-                       type="number" class="form-control border-primary border"
+                       type="numeric" class="form-control border-primary border"
                        placeholder="auto" required>
                 <label class="small" :for="subproductid" style="pointer-events: none">
                     {{quantity}}

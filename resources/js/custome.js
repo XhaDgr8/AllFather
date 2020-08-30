@@ -1,5 +1,7 @@
 $(document).ready(function (){
 
+    $("[type='number']").scroll(function (evt) { evt. preventDefault(); });
+
     $('.hovered').hover(function (){
         $(this).toggleClass('pl-4');
     })

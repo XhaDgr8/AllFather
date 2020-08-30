@@ -13,9 +13,12 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function customers()
     {
+        $this->authorize('v_user_all');
+
         $customers = Role::where('name', 'customer')->first()->users;
 
         $workers = Role::where('name', 'worker')->first()->users;
@@ -27,9 +30,11 @@ class UserController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('c_user');
         return view('pages.customers.create');
     }
 
@@ -41,6 +46,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('c_user');
         $data = request()->validate([
             'user_name' => ['required', 'string', 'unique:profiles','max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -100,6 +106,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('d_users');
+
         $user->delete();
 
         return redirect('/customer/all');

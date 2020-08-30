@@ -12,7 +12,7 @@ class Helper
         } else if ($for != '') {
             $avatar = asset('storage/'.$for);
         } else {
-            $avatar = asset('storage/sa/img_avatar.png');
+            $avatar = asset('storage/sa/img_avatar.jpg');
         }
         return $avatar;
     }

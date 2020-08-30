@@ -10,9 +10,9 @@
 @section('content')
     <div class="container">
         {{-- Users Table --}}
-        <h1 class="text-center">Customers Management</h1>
+        <h1 class="text-center">Sub Products Management</h1>
         <p class="text-center text-primary">
-            Here You can see how is assigned to which user.
+            Here You can see all Sub Products and their details.
         </p>
         <div class="row">
             <div class="row py-3 text-center text-small text-muted">

@@ -24,7 +24,7 @@ class CreateSubProductsTable extends Migration
             $table->string('price_per_unit', 400)->nullable();
             $table->string('production_unit', 400)->nullable();
             $table->string('production_price', 400)->nullable();
-            $table->string('stock_quantity', 400)->nullable();
+            $table->decimal('stock_quantity',  9, 3)->nullable();
             $table->string('price_for_customer', 400)->nullable();
             $table->string('price_for_admin', 400)->nullable();
             $table->string('other_costs', 400)->nullable();

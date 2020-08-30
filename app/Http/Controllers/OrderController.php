@@ -9,6 +9,7 @@ use App\Product;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -18,6 +19,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('v_order');
         $orders = Order::paginate(30);
 
         return view('pages.order.index', compact('orders'));
@@ -29,12 +31,17 @@ class OrderController extends Controller
      */
     public function create()
     {
+        $this->authorize('c_order');
         $products = [];
         if (session()->has('product.id')){
-            $sessions = session('product.id');
-            foreach ($sessions as $session){
-                $product = Product::findOrFail($session);
-                array_push($products, $product);
+            if (count(session('product.id')) > 0 ){
+                $sessions = session('product.id');
+                foreach ($sessions as $session){
+                    $product = Product::findOrFail($session);
+                    array_push($products, $product);
+                }
+            } else {
+                return redirect('/home');
             }
         } else {
             return back();
@@ -49,6 +56,7 @@ class OrderController extends Controller
      */
     public function store(OrderStoreRequest $request)
     {
+        $this->authorize('c_order_self');
 
         $order = Order::create($request->validated());
 
@@ -62,7 +70,6 @@ class OrderController extends Controller
         }
 
         session()->flush();
-        $request->session()->flash('pages.order.id', $order->id);
         return redirect('/order');
     }
 

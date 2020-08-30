@@ -12,16 +12,15 @@
         {{-- Users Table --}}
         <h1 class="text-center">Products Management</h1>
         <p class="text-center text-primary">
-            Here You can see how is assigned to which user.
+            Here You can see all Products and their details.
         </p>
         <div class="row">
             <div class="row py-3 text-center text-small text-muted">
                 <div class="col-1"><p class="m-0">cat_number</p></div>
                 <div class="col-1"><p class="m-0">image</p></div>
                 <div class="col-2"><p class="m-0">Name</p></div>
-                <div class="col-2"><p class="m-0">Category</p></div>
-                <div class="col-1"><p class="m-0">Stock Quantity</p></div>
-                <div class="col-1"><p class="m-0">Price Per Unit</p></div>
+                <div class="col-2"><p class="m-0">Stock</p></div>
+                <div class="col-2"><p class="m-0">Price Per Unit</p></div>
                 <div class="col-2"><p class="m-0">Create by</p></div>
                 <div class="col"><p class="m-0">Actions</p></div>
             </div>
@@ -33,9 +32,12 @@
                         <x-sub-product-avatar class="shadow-sm" :alt="$product->name" :for="$product->image" radius="10%" w="4rem" h="4rem"/>
                     </div>
                     <div class="col-2">{{ $product->name }}</div>
-                    <div class="col-2">{{ $product->category }}</div>
-                    <div class="col-1">{{ $product->stock_quantity }}</div>
-                    <div class="col-1">{{ $product->price_per_unit }}</div>
+                    <div class="col-2">
+                        <strong>
+                            <span class="text-{{ $product->stock_quantity > 0 ? 'success' : 'danger' }}">{{ $product->stock_quantity > 0 ? 'In Stock' : 'not in stock' }}</span>
+                        </strong>
+                    </div>
+                    <div class="col-2">{{ $product->perUnit() }}</div>
                     <div class="col-2">{{ $product->createdBy->profile->user_name }}</div>
                     <div class="col-auto">
                         <a href="/product/{{$product->id}}" class="btn btn-link float-left text-decoration-none

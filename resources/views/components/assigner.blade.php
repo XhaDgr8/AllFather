@@ -1,7 +1,7 @@
 {{--{{dd($assigner)}}--}}
 @foreach($assigner['to'] as $to)
     <form type="hidden" action="{{route($assigner['route'])}}"
-          method="post">
+          method="post" class="d-inline">
         @csrf
         @if ($assigner['forName'] == 'user')
             <input type="hidden" value="{{$assigner['for']->id}}" name="{{$assigner['forName']}}">

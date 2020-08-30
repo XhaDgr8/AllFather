@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Product;
 use App\Profile;
 use App\Role;
@@ -37,12 +38,13 @@ class HomeController extends Controller
                 $countWorkers = $countWorkers + 1;
             }
         }
+        $orders = Order::all();
         $products = Product::all();
         $subProducts = SubProduct::all();
 
         return view('home',
             compact('customers', 'workers',
-                'countWorkers', 'products', 'subProducts'));
+                'countWorkers', 'products', 'subProducts', 'orders'));
 
     }
 }

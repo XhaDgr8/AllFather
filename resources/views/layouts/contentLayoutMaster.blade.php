@@ -33,7 +33,7 @@
     </div>
     <div class="layout row g-0">
         <div id="sidebar" class="anime shadow-md position-relative p-0 col-auto bg-white overflow-hidden">
-            <x-sidebar :subActive="$subActive" :active="$active"></x-sidebar>
+            <x-side-bar :subActive="$subActive" :active="$active"></x-side-bar>
         </div>
         <div id="content" class="col position-relative anime">
             <x-navbar></x-navbar>
