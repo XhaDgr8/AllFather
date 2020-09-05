@@ -10,15 +10,13 @@
 
     <title>{{$title}} - {{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-            crossorigin="anonymous">
-    </script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js">
+    </script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script type="text/javascript">
         /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
@@ -27,13 +25,13 @@
     @yield('scripts')
 </head>
 <body id="test" class="bg-light">
-<div id="app" class="position-relative">
-    <div class="modal-vue h-100 w-100 d-none p-5 position-absolute">
+    <div id="app" class="position-relative">
+    <div style="z-index: 300" class="modal-vue h-100 w-100 d-none p-5 position-absolute">
         <file-system :id="{{auth()->user()->id}}" asset="{{asset('storage/users/'.auth()->user()->id.'/')}}" />
     </div>
     <div class="layout row g-0">
         <div id="sidebar" class="anime shadow-md position-relative p-0 col-auto bg-white overflow-hidden">
-            <x-side-bar :subActive="$subActive" :active="$active"></x-side-bar>
+            <x-sidebar :subActive="$subActive" :active="$active"></x-sidebar>
         </div>
         <div id="content" class="col position-relative anime">
             <x-navbar></x-navbar>

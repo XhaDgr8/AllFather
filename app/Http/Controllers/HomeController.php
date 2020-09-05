@@ -28,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        session()->put('products.id', []);
         $customers = Role::where('name', 'customer')->first()->users;
 
         $workers = Role::where('name', 'worker')->first()->users;
@@ -38,6 +39,7 @@ class HomeController extends Controller
                 $countWorkers = $countWorkers + 1;
             }
         }
+
         $orders = Order::all();
         $products = Product::all();
         $subProducts = SubProduct::all();
@@ -47,4 +49,29 @@ class HomeController extends Controller
                 'countWorkers', 'products', 'subProducts', 'orders'));
 
     }
+
+    public function removeFromOrder ($id)
+    {
+        foreach (session("product.id") as $key => $ses){
+            if ($ses == $id){
+                session()->pull('product.id.'.$key);
+            }
+        }
+        return back();
+    }
+
+    public function addToOrder ($id)
+    {
+        if (session()->has('product.id')){
+            if ( in_array($id, session('product.id')) ){
+                session()->flash('product.error', "The Product is already added to order");
+            } else {
+                session()->push('product.id', $id);
+            };
+        } else {
+            session()->push('product.id', $id);
+        }
+        return back();
+    }
+
 }

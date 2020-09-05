@@ -50,44 +50,44 @@
                 <div class="col-12">
                     <div class="row">
                         @can('attach_role')
-                        <div class="col-6">
-                            <h5 class="">Assign a Role to this Customer</h5>
-                            <form class="mb-1 d-flex flex-row justify-content-center"
-                                  action="{{route('assign.role.to.user')}}" method="post">
-                                @csrf
+                            <div class="col-6">
+                                <h5 class="">Assign a Role to this Customer</h5>
+                                <form class="mb-1 d-flex flex-row justify-content-center"
+                                      action="{{route('assign.role.to.user')}}" method="post">
+                                    @csrf
 
-                                <input type="hidden" value="{{$profile->user->id}}" name="user">
+                                    <input type="hidden" value="{{$profile->user->id}}" name="user">
 
-                                <select name="assign_role" class="form-control d-block mr-2 shadow-sm">
-                                    @foreach($roles as $role)
-                                        <option value="{{ $role->name }}">{{ $role->label }}</option>
-                                    @endforeach
-                                </select>
-                                <button type="submit" class="btn btn-outline-primary rounded-circle shadow-sm">
-                                    <x-icon i="linkIt" class="m-0 p-0" h=".7rem" w=".7rem"/>
-                                </button>
-                            </form>
-                        </div>
+                                    <select name="assign_role" class="form-control d-block mr-2 shadow-sm">
+                                        @foreach($roles as $role)
+                                            <option value="{{ $role->name }}">{{ $role->label }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="btn btn-outline-primary rounded-circle shadow-sm">
+                                        <x-icon i="linkIt" class="m-0 p-0" h=".7rem" w=".7rem"/>
+                                    </button>
+                                </form>
+                            </div>
                         @endcan
                         @can('attach_worker')
-                        <div class="col-6">
-                            <h5 class="">Assign a Worker to this Customer</h5>
-                            <form class="mb-1 d-flex flex-row justify-content-around"
-                                  action="{{route('assign.worker.to.customer')}}" method="post">
-                                @csrf
+                            <div class="col-6">
+                                <h5 class="">Assign a Worker to this Customer</h5>
+                                <form class="mb-1 d-flex flex-row justify-content-around"
+                                      action="{{route('assign.worker.to.customer')}}" method="post">
+                                    @csrf
 
-                                <input type="hidden" value="{{$profile->user->id}}" name="customer">
+                                    <input type="hidden" value="{{$profile->user->id}}" name="customer">
 
-                                <select name="assign_worker" class="form-control text-dark d-block mr-2 shadow-sm">
-                                    @foreach($workers as $worker)
-                                        <option value="{{$worker->id}}">{{$worker->profile->user_name}}</option>
-                                    @endforeach
-                                </select>
-                                <button type="submit" class="btn btn-outline-primary rounded-circle shadow-sm">
-                                    <x-icon i="linkIt" class="m-0 p-0" h=".7rem" w=".7rem"/>
-                                </button>
-                            </form>
-                        </div>
+                                    <select name="assign_worker" class="form-control text-dark d-block mr-2 shadow-sm">
+                                        @foreach($workers as $worker)
+                                            <option value="{{$worker->id}}">{{$worker->profile->user_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="btn btn-outline-primary rounded-circle shadow-sm">
+                                        <x-icon i="linkIt" class="m-0 p-0" h=".7rem" w=".7rem"/>
+                                    </button>
+                                </form>
+                            </div>
                         @endcan
 
                     </div>

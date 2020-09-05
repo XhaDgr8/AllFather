@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\Helper;
 use App\Http\Requests\ProfileStoreRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Profile;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use File;
 
 class ProfileController extends Controller

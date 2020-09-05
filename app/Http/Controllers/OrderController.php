@@ -69,7 +69,7 @@ class OrderController extends Controller
             $product->addOrderQuantity($order->id, $quantity);
         }
 
-        session()->flush();
+        session()->forget('product.id');
         return redirect('/order');
     }
 

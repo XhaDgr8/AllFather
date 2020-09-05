@@ -29,6 +29,6 @@ class menuItems extends Component
      */
     public function render()
     {
-        return view('components.menue-items');
+        return view('components.menu-items');
     }
 }

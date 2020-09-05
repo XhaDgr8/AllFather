@@ -26,7 +26,7 @@
                             </div>
                         @endif
                         <div class="row border border-primary py-2 mb-2">
-{{--                            <div class="col">Name</div>--}}
+                            {{--                            <div class="col">Name</div>--}}
                             <div class="col-auto">Id</div>
                             <div class="col">Name</div>
                             <div class="col-4">Actions</div>
@@ -36,9 +36,9 @@
                                 <form method="post" action="ability/{{$ability->id}}" class="col-10">
                                     @csrf @method('PATCH')
                                     <div class="row">
-{{--                                        <div class="col">--}}
-{{--                                            <x-text-input attr="required" name="name" type="text" class="" :label="$ability->name" value="" />--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col">--}}
+                                        {{--                                            <x-text-input attr="required" name="name" type="text" class="" :label="$ability->name" value="" />--}}
+                                        {{--                                        </div>--}}
                                         <div class="col-auto">
                                             {{$ability->id}}
                                         </div>
@@ -276,12 +276,26 @@
                                 <div class="col-2 py-1">{{ $user->profile->user_name }}</div>
                                 <div class="col-3 py-1">{{ $user->email }}</div>
                                 <div class="col-3 py-1">
-                                    <x-assigner
-                                        :assigner="[
-                                            'for' => $user, 'to' => $user->roles, 'route' => 'detach.role.from.user',
-                                            'forName' => 'user', 'toName' => 'detach_role'
-                                        ]" class=""
-                                    />
+                                    {{--                                    <x-assigner--}}
+                                    {{--                                        :assigner="[--}}
+                                    {{--                                            'for' => $user, 'to' => $user->roles, 'route' => 'detach.role.from.user',--}}
+                                    {{--                                            'forName' => 'user', 'toName' => 'detach_role'--}}
+                                    {{--                                        ]" class="bg-danger"--}}
+                                    {{--                                    />--}}
+
+                                    @foreach($user->roles as $to)
+                                        <form type="hidden" action="{{route('detach.role.from.user')}}"
+                                              method="post" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" value="{{$user->id}}" name="user">
+                                            <input type="hidden" value="{{$to->name}}" name="detach_role">
+                                            <button {{$user->id == 1 ? $to->name == 'admin' ? 'disabled' : '' : ''}}
+                                                    class="anime hover-delete btn-sm btn my-1 px-2 rounded-pill btn-primary
+                                                     shadow-sm-primary">
+                                                <h6 class="m-0">{{$to->label}}</h6>
+                                            </button>
+                                        </form>
+                                    @endforeach
                                 </div>
                                 <div class="col-3 py-1">
                                     <form class="mb-1 d-flex flex-row justify-content-center"

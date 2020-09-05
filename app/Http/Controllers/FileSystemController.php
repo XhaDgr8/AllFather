@@ -48,19 +48,17 @@ class fileSystemController extends Controller
 
     public function avatar(Profile $user,$avatar)
     {
-        $oldPath = 'storage/users/'.auth()->user()->id; // publc/images/1.jpg
-        $newPath = 'storage/usedByDB/'.$user->id; // publc/images/2.jpg
-        $directoryPath=public_path($newPath);
-
+        $oldPath = 'app/public/users/'.auth()->user()->id;
+        $newPath = 'app/public/usedByDB/'.$user->id;
+        $directoryPath = storage_path($newPath);
         if(File::isDirectory($directoryPath)){
-            //Perform storing
-            if (File::copy(public_path($oldPath."/".$avatar), $newPath."/".$avatar)) {
+            if (File::copy(storage_path($oldPath."/".$avatar), storage_path($newPath."/".$avatar))) {
                 $user->update(['avatar' => 'usedByDB/'.$user->id.'/'.$avatar]);
             }
         } else {
             File::makeDirectory($directoryPath, 0777, true, true);
             //Perform storing
-            if (File::copy(public_path($oldPath."/".$avatar), $newPath."/".$avatar)) {
+            if (File::copy(storage_path($oldPath."/".$avatar), storage_path($newPath."/".$avatar))) {
                 $user->update(['avatar' => 'usedByDB/'.$user->id.'/'.$avatar]);
             }
         }

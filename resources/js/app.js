@@ -4,8 +4,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import Qtty from "./components/Qtty";
-
 require('./bootstrap');
 require('./custome');
 window.Vue = require('vue');
@@ -27,17 +25,8 @@ const app = new Vue({
     data() {
         return {
             active: false,
-            pQty: [],
-            ele: ''
         }
     },
-    methods: {
-        productQtty(id){
-            $("#"+id).keyup(function (){
-                console.log(id);
-            });
-        }
-    }
 });
 
 

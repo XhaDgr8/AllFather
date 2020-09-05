@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class sidebar extends Component
 {
@@ -24,14 +25,14 @@ class sidebar extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render()
     {
         return view('components.sidebar');
     }
 
-    public function menus ()
+    public function menus()
     {
         return [
             [
@@ -102,7 +103,7 @@ class sidebar extends Component
                 'roles' => [
                     'admin', 'worker', 'customer'
                 ]
-            ],
+            ]
         ];
     }
 

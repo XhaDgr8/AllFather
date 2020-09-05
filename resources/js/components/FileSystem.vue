@@ -6,6 +6,7 @@
                 <span class="p-0 m-0" aria-hidden="true">&times;</span>
             </button>
         </div>
+
         <!-- right content section -->
         <div class="col-12 bg-light pt-3">
             <div class="container-fluid">
@@ -48,7 +49,7 @@
                         <input type="file" @change="onInputChange" multiple name="file" id="fileUpload" hidden>
                     </div>
                     <div v-show="images.length" class="row bg-primary rounded-lg pt-2">
-                        <div class="col-4 mb-3" v-for="(image, index) in images" :key="index">
+                        <div class="col-md-3 col-sm-4 col-6 mb-3" v-for="(image, index) in images" :key="index">
                             <div class="p-2 bg-white rounded-lg shadow-md">
                                 <div style="max-height: 5rem" class="overflow-hidden">
                                     <img class="img-fluid w-100" :src="image" :alt="`image uploader ${index}`">

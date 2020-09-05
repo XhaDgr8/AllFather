@@ -1,13 +1,6 @@
 <?php
-
-use App\Ability;
-use App\Role;
-use App\User;
-use http\Client\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,117 +12,84 @@ use Illuminate\Support\Str;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/test', function () {
-    echo Str::kebab('assigner');
-    echo Blade::component('components.menueitems');
-});
-
-Route::get('/makeDefaults', 'AssignmentController@resetDefaults');
-
-Route::get('/removeFromOrder/{id}', function ($id){
-    foreach (session("product.id") as $key => $ses){
-        if ($ses == $id){
-            session()->pull('product.id.'.$key);
-        }
-    }
-    return back();
-});
-
-Route::get('/addToOrder/{id}', function ($id){
-    if (session()->has('product.id')){
-        if ( in_array($id, session('product.id')) ){
-            session()->flash('product.error', "The Product is already added to order");
-        } else {
-            session()->push('product.id', $id);
-        };
-    } else {
-        session()->push('product.id', $id);
-    }
-    return back();
-});
-
-Route::get('/', function () {
-//    session()->flush();
-    session()->put('products.id', []);
-    return view('welcome');
-});
+Route::get('/','AssignmentController@welcome');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::middleware('auth')->group(function(){
-    Route::resource('order', 'OrderController');
+Route::get('/makeDefaults', 'AssignmentController@resetDefaults')->middleware('auth');
 
-    Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/removeFromOrder/{id}', 'HomeController@removeFromOrder')->middleware('auth');
 
-    Route::get('/pView', 'ProfileController@pView')->name('customers.pView');
-    Route::resource('customers', 'ProfileController');
-    Route::post('/imageUpload/{customers}', 'ProfileController@imageUpload');
+Route::get('/addToOrder/{id}','HomeController@addToOrder')->middleware('auth');
 
-    // Customers All
-    Route::get('/customer/all', 'UserController@customers')
-        ->name('customer.all');
+Route::resource('order', 'OrderController')->middleware('auth');
 
-    // Create Customer View
-    Route::get('/customer/create', 'UserController@create')
-        ->name('customer.create');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
-    // Create Customer
-    Route::patch('/customer/create', 'UserController@store')
-        ->name('new.customer.create');
+Route::get('/pView', 'ProfileController@pView')->name('customers.pView')->middleware('auth');
+Route::resource('customers', 'ProfileController')->middleware('auth');
+Route::post('/imageUpload/{customers}', 'ProfileController@imageUpload')->middleware('auth');
 
-    // Delete Customer
-    Route::delete('/customer/{user}', 'UserController@destroy');
+// Customers All
+Route::get('/customer/all', 'UserController@customers')
+    ->name('customer.all')->middleware('auth');
 
-    Route::resource('sub-product', 'SubProductController');
+// Create Customer View
+Route::get('/customer/create', 'UserController@create')
+    ->name('customer.create')->middleware('auth');
 
-    // File Upload System
-    Route::post('/findFolders/{user}', 'fileSystemController@folderData');
-    Route::post('/fileUpload/{user}', 'fileSystemController@fileUpload');
-    Route::get('/avatar/{user}/{avatar}', 'fileSystemController@avatar');
-    Route::get('/subProductImage/{user}/{avatar}', 'fileSystemController@subProductImage');
-    Route::get('/productImage/{user}/{avatar}', 'fileSystemController@productImage');
-    Route::post('/deleteFile/{user}/{img}', 'fileSystemController@deleteFile');
+// Create Customer
+Route::patch('/customer/create', 'UserController@store')
+    ->name('new.customer.create')->middleware('auth');
 
-    Route::resource('product', 'ProductController');
-    // Attach SubProduct To Product
-    Route::post('/attachToProduct/{product}/{subProduct}', 'ProductController@attachToProduct');
-    Route::post('/detachFromProduct/{product}/{subProduct}', 'ProductController@detachFromProduct');
-    Route::post('/productsSubProducts/{product}', 'ProductController@productsSubProducts');
-    Route::post('/getQuantity/{product}/{subProduct}', 'ProductController@getQuantity');
-    Route::post('/changeQuantity/{product}/{subProduct}/{quantity}', 'ProductController@changeQuantity');
+// Delete Customer
+Route::delete('/customer/{user}', 'UserController@destroy')->middleware('auth');
 
+Route::resource('sub-product', 'SubProductController')->middleware('auth');
 
-    Route::resource('role', 'RoleController');
-    Route::resource('ability', 'AbilityController');
+// File Upload System
+Route::post('/findFolders/{user}', 'fileSystemController@folderData')->middleware('auth');
+Route::post('/fileUpload/{user}', 'fileSystemController@fileUpload')->middleware('auth');
+Route::get('/avatar/{user}/{avatar}', 'fileSystemController@avatar')->middleware('auth');
+Route::get('/subProductImage/{user}/{avatar}', 'fileSystemController@subProductImage')->middleware('auth');
+Route::get('/productImage/{user}/{avatar}', 'fileSystemController@productImage')->middleware('auth');
+Route::post('/deleteFile/{user}/{img}', 'fileSystemController@deleteFile')->middleware('auth');
 
-    // Assign Workers to Customers
-    Route::post('/assignWorker', 'AssignmentController@assignWorker')
-        ->name('assign.worker.to.customer');
-    Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')
-        ->name('unAssign.worker.to.customer');
-
-    Route::get('/ability_role', 'AssignmentController@index')->name('ability.role');
-
-    // Assign Roles to Users
-    Route::post('/user/assignRole', 'AssignmentController@storeRole')
-        ->name('assign.role.to.user');
-
-    // Detach Roles From Users
-    Route::post('/user/detachRole', 'AssignmentController@detachRoleFromUser')
-        ->name('detach.role.from.user');
-
-    // Assign to Ability To Roles
-    Route::post('/role/assignAbility', 'AssignmentController@storeAbility')
-        ->name('assign.ability.to.role');
-
-    // Remove to Ability From Roles
-    Route::post('/role/detachAbility', 'AssignmentController@detachAbilityFromRole')
-        ->name('detach.ability.from.role');
-
-});
-
-Auth::routes();
+Route::resource('product', 'ProductController')->middleware('auth');
+// Attach SubProduct To Product
+Route::post('/attachToProduct/{product}/{subProduct}', 'ProductController@attachToProduct')->middleware('auth');
+Route::post('/detachFromProduct/{product}/{subProduct}', 'ProductController@detachFromProduct')->middleware('auth');
+Route::post('/productsSubProducts/{product}', 'ProductController@productsSubProducts')->middleware('auth');
+Route::post('/getQuantity/{product}/{subProduct}', 'ProductController@getQuantity')->middleware('auth');
+Route::post('/changeQuantity/{product}/{subProduct}/{quantity}', 'ProductController@changeQuantity')->middleware('auth');
 
 
+Route::resource('role', 'RoleController')->middleware('auth');
+Route::resource('ability', 'AbilityController')->middleware('auth');
+
+// Assign Workers to Customers
+Route::post('/assignWorker', 'AssignmentController@assignWorker')
+    ->name('assign.worker.to.customer')->middleware('auth');
+Route::post('/unAssignWorker', 'AssignmentController@unAssignWorker')
+    ->name('unAssign.worker.to.customer')->middleware('auth');
+
+Route::get('/ability_role', 'AssignmentController@index')->name('ability.role')->middleware('auth');
+
+// Assign Roles to Users
+Route::post('/user/assignRole', 'AssignmentController@storeRole')
+    ->name('assign.role.to.user')->middleware('auth');
+
+// Detach Roles From Users
+Route::post('/user/detachRole', 'AssignmentController@detachRoleFromUser')
+    ->name('detach.role.from.user')->middleware('auth');
+
+// Assign to Ability To Roles
+Route::post('/role/assignAbility', 'AssignmentController@storeAbility')
+    ->name('assign.ability.to.role')->middleware('auth');
+
+// Remove to Ability From Roles
+Route::post('/role/detachAbility', 'AssignmentController@detachAbilityFromRole')
+    ->name('detach.ability.from.role')->middleware('auth');

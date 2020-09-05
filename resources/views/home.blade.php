@@ -8,28 +8,55 @@
         $bread = [];
     @endphp
 @endsection
+@section('scripts')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var owl = $('.owl-carousel');
+            owl.owlCarousel({
+                lazyLoad:true,
+                items:1,
+                autoplay: true,
+                video:true,
+                loop:true,
+                animateOut: 'fadeOut',
+                margin:250,
+                onTranslate: function() {
+                    owl.find('.video').click(function() {
+                        this.pause();
+                    });
+                }
+            });
 
+            owl.on('mousewheel', '.owl-stage', function (e) {
+                if (e.deltaY>0) {
+                    owl.trigger('next.owl');
+                } else {
+                    owl.trigger('prev.owl');
+                }
+                e.preventDefault();
+            });
+        });
+    </script>
+@endsection
 @section('content')
 <div class="container">
     <div class="row mb-5 g-4">
-
         <!-- Welcome Box -->
         <div class="col-md-12 fadeInUp">
             <div style="height: 30rem" class="container hover-top anime cursor-pointer overflow-hidden position-relative rounded-lg shadow-md">
 
+                <div class="owl-carousel owl-theme position-absolute w-100 h-100" style="top: 0;left: 0" >
+                    <img data-src="{{asset('storage/sa/mainBg.jpg')}}" alt="Home Background Main" style="min-height: 30rem" class="img-fluid owl-lazy img-zoom w-100">
+                    <img data-src="{{asset('storage/sa/mainBg1.jpg')}}" alt="Home Background Main" style="min-height: 30rem" class="img-fluid owl-lazy img-zoom w-100">
+                    <img data-src="{{asset('storage/sa/mainBg2.jpg')}}" alt="Home Background Main" style="min-height: 30rem" class="img-fluid owl-lazy img-zoom w-100">
+                </div>
 
-                <div id="carouselExampleFade" class="carousel slide position-absolute w-100 h-100 overflow-hidden carousel-fade"
-                     data-ride="carousel" style="top: 0;left: 0">
+                <div id="carouselExampleFade" class="carousel slide position-absolute w-100 h-100 overflow-hidden" style="top: 0;left: 0" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{asset('storage/sa/mainBg.jpg')}}" alt="Home Background Main" style="min-height: 30rem" class="img-fluid img-zoom w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{asset('storage/sa/mainBg1.jpg')}}" alt="Home Background Main" style="min-height: 30rem" class="img-fluid img-zoom w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{asset('storage/sa/mainBg2.jpg')}}" alt="Home Background Main" style="min-height: 30rem" class="img-fluid img-zoom w-100">
-                        </div>
+
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -40,6 +67,7 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+
                 <div class="position-absolute hover-top anime cursor-pointer w-100 h-100 pt-5 overflow-hidden d-flex flex-column justify-content-center"
                      style="top: 0;left: 0;z-index: 15;pointer-events: none">
                     <h1 class="text-white mt-5 text-center font-weight-bold">
@@ -71,7 +99,7 @@
                                 <h1 class="font-weight-bold m-0 text-left text-dark col">
                                     {{count($orders)}}
                                 </h1>
-                                <h5 class="text-muted ml-2 mt-3 col-12">
+                                <h5 class="text-muted ml-2 col-12">
                                     Orders Gained
                                 </h5>
                             </div>
@@ -83,8 +111,7 @@
                 <!-- Workers -->
                 @can('v_user_worker')
                     <div class="col-md-3 fadeInUp">
-                        <a href="/customer" style="height: 15rem" class="container text-decoration-none btn btn-link border-0
-                bg-white hover-top anime cursor-pointer position-relative rounded-lg shadow-md p-2">
+                        <a href="/customer/all" style="height: 15rem" class="container text-decoration-none btn btn-link border-0 bg-white hover-top anime cursor-pointer position-relative rounded-lg shadow-md p-2">
                             <div class="container-fluid hover-top anime cursor-pointer row p-0">
                                 <div class="col-auto">
                                     <div style="width: 3rem;height: 3rem" class="rounded-circle m-0 p-0 d-flex flex-row justify-content-center alert alert-success">
@@ -330,9 +357,9 @@
             @foreach($products as $product)
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="row text-muted bg-white c-it border border-primary anime shadow-md hover-up rounded-lg">
-                        <div class="col-12" style="max-height: 15rem">
-                            <x-sub-product-avatar class="img-fluid my-2 mx-auto"
-                                                  :alt="$product->name" :for="$product->image" radius="10%" w="auto" h="auto"/>
+                        <div class="col-12 py-2" style="max-height: 15rem">
+                            <x-sub-product-avatar class="img-fluid rounded-lg mx-auto mh-100"
+                                                  :alt="$product->name" :for="$product->image" radius="" w="auto" h="auto"/>
                         </div>
                         <div class="col-auto">
                             <a href="/product/{{$product->id}}" class="btn btn-link float-left text-decoration-none
@@ -350,6 +377,13 @@
                                 </strong>
                             </p>
                         </div>
+                        @if (session()->has('product.id'))
+                            @if(in_array($product->id, session('product.id')))
+                                <div class="col-12 p-0 px-2 mt-3 alert alert-success">
+                                    {{$product->name}} added to Order successfully
+                                </div>
+                            @endif
+                        @endif
                         <div class="col-12 my-3">
                             <a href="/addToOrder/{{$product->id}}" class="btn btn-link float-left anime text-decoration-none btn-primary rounded-lg shadow-sm-primary">
                                 <x-icon i="cartPlus" class="m-0 p-0" h="1.5rem" w="1.5rem"/>

@@ -13,7 +13,14 @@ use Illuminate\Support\Facades\DB;
 class AssignmentController extends Controller
 {
 
+    public function welcome ()
+    {
+        session()->flush();
+        return view('welcome');
+    }
+
     public function index () {
+        $this->middleware('auth');
         $users = User::all();
         $roles = Role::all();
         $abilities = Ability::all();
@@ -25,6 +32,12 @@ class AssignmentController extends Controller
         $this->authorize('attach_role');
         $user = User::findOrFail(request()->user);
         $user->assignRole(request()->assign_role);
+        if ($user->is_role('worker')){
+            $user->detachRole('customer');
+        }
+        if ($user->is_role('customer')){
+            $user->detachRole('worker');
+        }
         return back();
     }
 
