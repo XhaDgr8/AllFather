@@ -52,7 +52,7 @@
                         <div class="col-md-3 col-sm-4 col-6 mb-3" v-for="(image, index) in images" :key="index">
                             <div class="p-2 bg-white rounded-lg shadow-md">
                                 <div style="max-height: 5rem" class="overflow-hidden">
-                                    <img class="img-fluid w-100" :src="image" :alt="`image uploader ${index}`">
+                                    <img class="img-fluid w-100 " :src="image" :alt="`image uploader ${index}`">
                                 </div>
                                 <div class="text-dark">
                                     <p class="m-0 small text-truncate" v-text="files[index].name"></p>
